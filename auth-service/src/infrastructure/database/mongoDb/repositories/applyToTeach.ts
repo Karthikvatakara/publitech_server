@@ -6,10 +6,7 @@ import { findByEmail } from "./findByEmail";
 export const applyToTeach = async(data:applyToTeachEntity):Promise<UserEntity | null> => {
     try{
         const { email,profession,profileDescription,github,linkedIn,mobile } = data;
-        console.log("🚀 ~ applyToTeach ~ profileDescription:", profileDescription)
-        console.log("🚀 ~ applyToTeach ~ profession:", profession)
-        console.log("🚀 ~ applyToTeach ~ email:", email)
-
+        
         const user:UserEntity |null = await User.findOne({email:email})
 
         if(!user){
@@ -21,7 +18,7 @@ export const applyToTeach = async(data:applyToTeachEntity):Promise<UserEntity | 
 
        const updatedUser = await User.findOneAndUpdate({email:email},
                             {$set:{
-                                proffesion: profession,
+                                profession: profession,
                                 profileDescription: profileDescription,
                                 'contact.socialMedia.github': github,
                                 'contact.socialMedia.linkedIn': linkedIn,

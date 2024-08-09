@@ -8,7 +8,7 @@ export const generateAccessToken = (payload:{_id:string,email: string, role:stri
         }
         const { _id,email,role } = payload;
         
-        return jwt.sign({_id,email,role},accesstokenSecret,{expiresIn:'10m'});
+        return jwt.sign({_id,email,role},accesstokenSecret,{expiresIn:'60m'});
 
     }catch(error:any){
         throw new Error("failed to generate access token")

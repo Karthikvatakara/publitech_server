@@ -14,7 +14,7 @@ interface userPayload {
 declare global {
     namespace Express {
         interface Request {
-            user?:userPayload
+            user?: userPayload
         }
     }
 }
@@ -45,7 +45,7 @@ export const jwtMiddleware = async( req:Request,res:Response,next:NextFunction):
             user = jwt.verify(refresh_Token,process.env.REFRESH_TOKEN_SECRET!)as userPayload;
             if(user){
                 const newAccessToken = generateAccessToken(user)
-                res.cookie("access_token",newAccessToken,{
+                res.cookie("access_Token",newAccessToken,{
                     httpOnly: true,
                 });
                 // req.user = user;

@@ -8,9 +8,10 @@ export const verifyOtpUseCase = (dependencies:IDependencies) => {
         execute:async(email: string,otp: string) => {
             try{    
                 return await verifyOtp(email,otp);
-            }catch(error){
+            }catch(error:any){
                 console.log("something went wrong in verify otp usecase");
-                return false
+                throw new Error(error)
+                // return false
             }
         }
     }

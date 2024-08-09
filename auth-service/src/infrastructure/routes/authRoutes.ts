@@ -5,7 +5,7 @@ import { jwtMiddleware } from '../../_lib/common/middlewares/jwtMiddleware';
 
 
 export const authRoutes = (dependencies:IDependencies) => {
-    const {signup,getUser,login,logout,applyToTeach} = controllers(dependencies);
+    const {signup,getUser,login,logout,applyToTeach,forgotPassword,updatePassword,googleAuth} = controllers(dependencies);
 
     const router = Router();
 
@@ -14,5 +14,8 @@ export const authRoutes = (dependencies:IDependencies) => {
     router.route("/login").post(login)
     router.route("/logout").delete(logout)
     router.route("/apply-to-teach").post(applyToTeach)
+    router.route("/forgot-password").post(forgotPassword)
+    router.route("/update-password").post(updatePassword)
+    router.route("/google").post(googleAuth)
     return router;
 }
