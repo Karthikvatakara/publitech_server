@@ -3,6 +3,7 @@ import { IDepencencies } from "../../application/interfaces/IDependency";
 import { PaymentEntity } from "../../domain/entities/paymentEntity";
 import paymentSuccessProducer from "../../infrastructure/kafka/producer/paymentSuccessProducer";
 import createChatProducer from "../../infrastructure/kafka/producer/createChatProducer";
+import updateChatSubscription from "../../infrastructure/kafka/producer/updateChatSubscription";
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -15,7 +16,6 @@ export const stripeWebhookHandler = (dependencies: IDepencencies) => {
 
         try {
             event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-            // console.log("🚀 ~ return ~ event:", event);
         } catch (error) {
             console.log(`⚠️  Webhook signature verification failed.`, (error as Error)?.message);
             return res.status(400).json({success: false, message: "Webhook signature verification failed"});
@@ -28,6 +28,7 @@ export const stripeWebhookHandler = (dependencies: IDepencencies) => {
                 console.log("🚀 ~ return ~ session:", session.metadata,"aaaaaaaaaaaaaa");
                 
                 if (session.metadata.courseId) {
+                    console.log("courseid present 999999999999999999999999999999999999")
                     await handleCourseCheckoutSession(session, dependencies);
                 } else if (session.metadata.chatId) {
                     console.log("111111111111")
@@ -87,33 +88,42 @@ const handleCourseCheckoutSession = async (session: any, dependencies: IDepencen
 };
 
 const handleSubscriptionCheckoutSession = async (session: any, dependencies: IDepencencies) => {
-    // const { useCases: { saveSubscriptionUseCase } } = dependencies;
+    const { useCases: { subscriptionPaymentUseCase } } = dependencies;
     const { chatId, userId, planName } = session.metadata;
     const amount = session.amount_total / 100;
     const method = session.payment_method_types[0];
-    const status = session.payment_status === "paid" ? "completed" : "failed";
-    console.log("hi reached here")
+    const subscriptionType:  "basic" |"standard" | "premium" = planName;
+    const status: "pending" | "completed" | "failed" | "refunded" = session.payment_status === "paid" ? "completed" : "failed";
+
     try {
         const subscriptionData = {
             userId,
             chatId,
-            planName,
             method,
             status,
-            amount
+            amount,
+            subscriptionType
         };
         console.log("🚀 ~ handleSubscriptionCheckoutSession ~ subscriptionData:", subscriptionData)
 
-        // const response = await saveSubscriptionUseCase(dependencies).execute(subscriptionData);
+        const response = await subscriptionPaymentUseCase(dependencies).execute(subscriptionData);
         
         // Update the chat or user status
-        const chatUpdateData = {
+        const chatUpdateData: {userId: string,chatId: string, subscriptionType: "none"| "basic" | "standard" | "premium"}= {
             userId,
             chatId,
-            subscriptionStatus: 'active',
-            planName
+            subscriptionType
         };
-        await createChatProducer(chatUpdateData, "chat-service-topic");
+        console.log("🚀 ~ handleSubscriptionCheckoutSession ~ chatUpdateData:", chatUpdateData)
+
+        // await updateChatSubscription(chatUpdateData, "chat-service-topic");
+
+        try {
+            await updateChatSubscription(chatUpdateData, "chat-service-topic");
+            console.log("updateChatSubscription message sent successfully");
+        } catch (error) {
+            console.error("Error sending updateChatSubscription message:", error);
+        }
 
         console.log("Subscription payment processed successfully");
     } catch (error) {

@@ -20,3 +20,5 @@ __exportStar(require("./IGetAllInstructors"), exports);
 __exportStar(require("./IBlockInstructor"), exports);
 __exportStar(require("./IEditUserProfile"), exports);
 __exportStar(require("./IFindByEmailUseCase"), exports);
+__exportStar(require("./IGetAllStudents"), exports);
+__exportStar(require("./IToggleStudentBlockStatusUseCase"), exports);

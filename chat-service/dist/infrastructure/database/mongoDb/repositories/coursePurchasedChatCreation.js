@@ -14,8 +14,17 @@ const models_1 = require("../models");
 const coursePurchasedChatCreation = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const chatData = {
-            users: [data.userId, data.instructorRef]
+            users: [data.userId, data.instructorRef],
+            isGroupChat: false
         };
+        const isChatExist = yield models_1.chat.findOne({
+            users: {
+                $all: [data.userId, data.instructorRef]
+            }
+        });
+        if (isChatExist) {
+            return null;
+        }
         const newChat = yield models_1.chat.create(chatData);
         return newChat;
     }

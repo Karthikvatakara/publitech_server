@@ -22,3 +22,5 @@ __exportStar(require("./getallInstructors"), exports);
 __exportStar(require("./blockInstructor"), exports);
 __exportStar(require("./editProfile"), exports);
 __exportStar(require("./findByEmail"), exports);
+__exportStar(require("./getAllStudents"), exports);
+__exportStar(require("./toggleStudentBlockStatus"), exports);

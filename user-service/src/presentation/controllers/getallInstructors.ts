@@ -1,5 +1,4 @@
 import { Request,Response,NextFunction } from "express";
-import { dependecies } from "../../_boot/dependencies";
 import { IDependencies } from "../../application/interfaces/IDependency";
 
 export const getallInstructorsController =(dependecies:IDependencies) => {

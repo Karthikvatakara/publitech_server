@@ -12,6 +12,8 @@ export const routes = (dependencies: IDependencies) => {
     getallInstructors,
     blockInstructor,
     editUserProfile,
+    getAllStudents,
+    toggleStudentBlockStatus
   } = controllers(dependencies);
 
   const router = Router();
@@ -27,6 +29,14 @@ export const routes = (dependencies: IDependencies) => {
   router
     .route("/admin/instructor")
     .get(jwtMiddleware, verifyAdmin, getallInstructors);
+
+  router
+    .route("/admin/students")
+    .get(getAllStudents)
+
+  router
+    .route("/admin/students/status/:userId")
+    .post(toggleStudentBlockStatus)
 
   router
     .route("/admin/instructor/status")

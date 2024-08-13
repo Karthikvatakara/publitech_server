@@ -6,6 +6,7 @@ import { generateRefreshToken } from "../../_lib/jwt";
 import { generateRandomString } from "../../_lib/other/generateRandomString";
 import { OAuth2Client } from "google-auth-library";
 import userCreatedProducer from "../../infrastructure/kafka/producers/userCreatedProducer";
+import { error } from "console";
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
 
 export const googleAuthController = (dependencies:IDependencies) => {
@@ -35,6 +36,10 @@ export const googleAuthController = (dependencies:IDependencies) => {
                 
             const exist:any = await findByEmailUseCase(dependencies).execute(email);
             console.log("🚀 ~ returnasync ~ exist:", exist)
+
+            if(exist.isBlocked ) {
+                throw new Error("you are blocked by admin")
+            }
 
             if(exist ){
                 console.log("🚀 ~ returnasync ~ exist:", exist)

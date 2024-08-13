@@ -20,3 +20,5 @@ __exportStar(require("./getallInstructorsUseCase"), exports);
 __exportStar(require("./blockInstructorUseCase"), exports);
 __exportStar(require("./editUserProfileUseCase"), exports);
 __exportStar(require("./findByEmailUseCase"), exports);
+__exportStar(require("./getAllStudentsUseCase"), exports);
+__exportStar(require("./toggleStudentBlockStatusUseCase"), exports);
