@@ -4,7 +4,8 @@ dotenv.config();
 import cookieParser from 'cookie-parser'
 import mongoSanitize from 'express-mongo-sanitize';
 import cors from 'cors';
-import { errorHandler } from '../_lib/error';
+// import { errorHandler } from '../_lib/error';
+import errorHandler from '../_lib/common/error/errorHandler';
 import { paymentRoutes } from '../infrastructure/routes/paymentRoutes';
 import { dependencies } from '../_boot/dependencies';
 import bodyParser from 'body-parser';

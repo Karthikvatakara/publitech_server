@@ -33,6 +33,7 @@ const editUserProfileController = (dependecies) => {
             //   sending data to service
             (0, editUserProfile_1.default)(editedUser, "auth-service-topic");
             (0, editUserProfile_1.default)(editedUser, "course-service-topic");
+            (0, editUserProfile_1.default)(editedUser, "payment-service-topic");
             res.status(200).json({ success: true, data: editedUser, message: "profile edited successfully" });
         }
         catch (error) {

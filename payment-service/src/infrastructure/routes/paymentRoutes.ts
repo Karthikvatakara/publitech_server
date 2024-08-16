@@ -2,9 +2,13 @@ import { Router } from "express";
 import { IDepencencies } from "../../application/interfaces/IDependency";
 import { controllers } from "../../presentation/controllers";
 import express from 'express';
+import { jwtMiddleware } from "../../_lib/common/middlewares/jwtMiddleware";
+import { verifyAdmin } from "../../_lib/common/middlewares/verifyAdmin";
+  
 
 export const paymentRoutes = (dependencies:IDepencencies) => {
-    const { createCheckOutSession,stripeWebhook,paymentSuccess,createSubscriptionCheckout } = controllers(dependencies);
+    const { createCheckOutSession,stripeWebhook,paymentSuccess,
+        createSubscriptionCheckout, getAllCoursePayments, getAllSubscriptionPayments } = controllers(dependencies);
 
     const router  = Router();
 
@@ -19,7 +23,12 @@ export const paymentRoutes = (dependencies:IDepencencies) => {
         
     router.route("/success")
         .get(paymentSuccess)
+    
+    router.route("/admin/payments")
+        .get(getAllCoursePayments)
 
+    router.route("/admin/subscriptionPayments")
+        .get(getAllSubscriptionPayments)
         
-    return router
+    return router  
 }

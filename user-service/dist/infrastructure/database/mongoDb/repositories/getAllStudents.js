@@ -22,8 +22,8 @@ const getAllStudents = (page, limit, status, search) => __awaiter(void 0, void 0
         }
         if (search) {
             query.$or = [
-                { email: { $regex: search, $options: "i" } },
-                { username: { $regex: search, $optios: "i" } }
+                { username: { $regex: search, $options: "i" } },
+                { email: { $regex: search, $options: "i" } }
             ];
         }
         const totalCount = yield User_1.User.countDocuments(query);

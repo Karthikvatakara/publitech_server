@@ -81,10 +81,12 @@ export const signupController = (dependencies:IDependencies) => {
                     })
                 }
 
-                // sending data to user-service 
+                // sending data to various services
                 await userCreatedProducer(userData,"user-service-topic");     
-                await userCreatedProducer(userData,"course-service-topic")
-                await userCreatedProducer(userData,"chat-service-topic")
+                await userCreatedProducer(userData,"course-service-topic");
+                await userCreatedProducer(userData,"chat-service-topic");
+                await userCreatedProducer(userData,"payment-service-topic")
+                
                 const accessToken = generateAccessToken({
                     _id:String(userData?._id),
                     email: userData.email,

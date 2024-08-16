@@ -8,7 +8,7 @@ const express_1 = require("express");
 const controllers_1 = require("../../presentation/controllers");
 const express_2 = __importDefault(require("express"));
 const paymentRoutes = (dependencies) => {
-    const { createCheckOutSession, stripeWebhook, paymentSuccess, createSubscriptionCheckout } = (0, controllers_1.controllers)(dependencies);
+    const { createCheckOutSession, stripeWebhook, paymentSuccess, createSubscriptionCheckout, getAllCoursePayments, getAllSubscriptionPayments } = (0, controllers_1.controllers)(dependencies);
     const router = (0, express_1.Router)();
     router.route("/create-checkout-session")
         .post(createCheckOutSession);
@@ -18,6 +18,10 @@ const paymentRoutes = (dependencies) => {
         .post(express_2.default.raw({ type: 'application/json' }), stripeWebhook);
     router.route("/success")
         .get(paymentSuccess);
+    router.route("/admin/payments")
+        .get(getAllCoursePayments);
+    router.route("/admin/subscriptionPayments")
+        .get(getAllSubscriptionPayments);
     return router;
 };
 exports.paymentRoutes = paymentRoutes;

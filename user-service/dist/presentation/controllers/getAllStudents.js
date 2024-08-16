@@ -18,10 +18,9 @@ const getAllStudentsController = (dependecies) => {
             const limit = parseInt(req.query.limit) || 5;
             const status = req.query.status;
             const search = req.query.search;
+            console.log("🚀 ~ returnasync ~ status:", status);
+            console.log("🚀 ~ returnasync ~ search:", search);
             const { students, totalPages, totalCount } = yield getAllStudentsUseCase(dependecies).execute(page, limit, status, search);
-            if (students.length === 0) {
-                res.status(404).json({ success: false, message: " students not found" });
-            }
             res.status(200).json({
                 success: true,
                 data: students,

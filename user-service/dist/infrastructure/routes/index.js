@@ -20,7 +20,7 @@ const routes = (dependencies) => {
         .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, getallInstructors);
     router
         .route("/admin/students")
-        .get(getAllStudents);
+        .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, getAllStudents);
     router
         .route("/admin/students/status/:userId")
         .post(toggleStudentBlockStatus);

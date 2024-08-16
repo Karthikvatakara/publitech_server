@@ -32,7 +32,7 @@ export const routes = (dependencies: IDependencies) => {
 
   router
     .route("/admin/students")
-    .get(getAllStudents)
+    .get(jwtMiddleware,verifyAdmin,getAllStudents)
 
   router
     .route("/admin/students/status/:userId")

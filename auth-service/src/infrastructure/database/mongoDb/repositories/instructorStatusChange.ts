@@ -5,7 +5,7 @@ export default async(data:UserEntity):Promise<UserEntity | null> => {
     try{
         const updated = await User.findByIdAndUpdate(
             data._id,
-            data,
+            { isBlocked: data?.isBlocked},
             { new: true } 
         );
         console.log("🚀 ~ async ~ updated:", updated)

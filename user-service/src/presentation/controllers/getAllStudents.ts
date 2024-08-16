@@ -11,12 +11,10 @@ export const getAllStudentsController = ( dependecies: IDependencies ) => {
             const limit = parseInt( req.query.limit as string ) || 5;
             const status = req.query.status as string;
             const search = req.query.search as string
+            console.log("🚀 ~ returnasync ~ status:", status)
+            console.log("🚀 ~ returnasync ~ search:", search)
 
             const { students, totalPages, totalCount } = await getAllStudentsUseCase(dependecies).execute( page, limit, status, search)
-
-            if(students.length === 0) {
-                res.status(404).json({ success: false, message:" students not found"})
-            }
 
             res.status(200).json({
                 success: true,

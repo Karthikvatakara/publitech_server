@@ -8,14 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toggleStudentBlockStatusController = void 0;
+const instructorStatusChange_1 = __importDefault(require("../../infrastructure/kafka/producers/instructorStatusChange"));
 const toggleStudentBlockStatusController = (dependecies) => {
     const { useCases: { toggleStudentBlockStatusUseCase } } = dependecies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const userId = req.params.userId;
             const updatedUser = yield toggleStudentBlockStatusUseCase(dependecies).execute(userId);
+            console.log("🚀 ~ returnasync ~ updatedUser:?????????????????????", updatedUser);
+            (0, instructorStatusChange_1.default)(updatedUser, "auth-service-topic");
+            (0, instructorStatusChange_1.default)(updatedUser, "course-service-topic");
             res.status(200).json({
                 success: true,
                 data: updatedUser,

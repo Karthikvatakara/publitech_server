@@ -46,6 +46,7 @@ export const editUserProfileController = (dependecies:IDependencies) => {
             //   sending data to service
               editUserProfile(editedUser,"auth-service-topic")
               editUserProfile(editedUser,"course-service-topic")
+              editUserProfile(editedUser,"payment-service-topic")
               
               res.status(200).json({success:true,data:editedUser,message:"profile edited successfully"})
         }catch(error){

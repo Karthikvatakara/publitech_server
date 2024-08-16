@@ -13,8 +13,8 @@ export const getAllStudents = async( page: number, limit: number, status: string
 
         if(search) {
             query.$or = [
-                { email: { $regex: search, $options : "i"}},
-                { username: { $regex: search, $optios: "i"}}
+                { username: { $regex: search, $options: "i"}},
+                { email: { $regex: search, $options : "i"}}
             ]
         }
 

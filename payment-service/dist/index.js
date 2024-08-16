@@ -14,10 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("./presentation/server"));
 const config_1 = __importDefault(require("./_boot/config"));
+const consumer_1 = require("./_boot/consumer");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
         server_1.default;
-        (0, config_1.default)();
+        yield (0, config_1.default)();
+        yield (0, consumer_1.runConsumer)();
     }
     catch (error) {
         console.error(error === null || error === void 0 ? void 0 : error.message);

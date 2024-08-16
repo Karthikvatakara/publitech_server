@@ -9,7 +9,8 @@ dotenv_1.default.config();
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const express_mongo_sanitize_1 = __importDefault(require("express-mongo-sanitize"));
 const cors_1 = __importDefault(require("cors"));
-const error_1 = require("../_lib/error");
+// import { errorHandler } from '../_lib/error';
+const errorHandler_1 = __importDefault(require("../_lib/common/error/errorHandler"));
 const paymentRoutes_1 = require("../infrastructure/routes/paymentRoutes");
 const dependencies_1 = require("../_boot/dependencies");
 const app = (0, express_1.default)();
@@ -36,7 +37,7 @@ app.use("/", (0, paymentRoutes_1.paymentRoutes)(dependencies_1.dependencies));
 app.use("*", (req, res) => {
     res.status(404).json({ success: false, status: 404, message: "Api not found" });
 });
-app.use(error_1.errorHandler);
+app.use(errorHandler_1.default);
 app.listen(PORT, () => {
     console.log(`connected to payment-service succesfully ${PORT}`);
 });
