@@ -6,14 +6,28 @@ export const getAllSubscriptionPaymentController = ( dependencies: IDepencencies
 
     return async( req: Request, res: Response, next: NextFunction ) => {
         try{
-            const getSubscriptionPayment = await getAllSubscriptionPaymentUseCase(dependencies).execute();
+            const page = parseInt( req.query.page as string ) || 1;
+            const limit = parseInt( req.query.limit as string ) || 5;
+            const status = req.query.status as string 
+            const search = req.query.search as string
+            
+            console.log("🚀 ~ returnasync ~ page:", page)
+            console.log("🚀 ~ returnasync ~ limit:", limit)
+            console.log("🚀 ~ returnasync ~ status:", status)
+            console.log("🚀 ~ returnasync ~ search:", search)
+            
+            const { subscriptions, totalPages, totalCount } = await getAllSubscriptionPaymentUseCase(dependencies).execute(page,limit,status,search);
 
-            if( !getSubscriptionPayment ) {
+            if( !subscriptions ) {
                 throw new Error("subscription not found")
             }
 
-            res.status(200).json({success: true, data: getSubscriptionPayment, message:"subscription payment fetched succesfully"})
-            
+            res.status(200).
+            json({success: true,
+                 data: subscriptions, 
+                 totalPages,
+                 totalCount,
+                 message:"subscription payment fetched succesfully"})
         }catch(error) {
             next(error)
         }

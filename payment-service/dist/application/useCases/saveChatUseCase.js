@@ -9,13 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllSubscriptionPaymentUseCase = void 0;
-const getAllSubscriptionPaymentUseCase = (dependencies) => {
-    const { repositories: { getAllSubscriptionPayment } } = dependencies;
+exports.saveChatUseCase = void 0;
+const repositories_1 = require("../../infrastructure/database/mongoDb/repositories");
+const saveChatUseCase = (dependencies) => {
     return {
-        execute: (page, limit, status, search) => __awaiter(void 0, void 0, void 0, function* () {
+        execute: (data) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                return yield getAllSubscriptionPayment(page, limit, status, search);
+                return yield (0, repositories_1.saveChat)(data);
             }
             catch (error) {
                 throw new Error(error === null || error === void 0 ? void 0 : error.message);
@@ -23,4 +23,4 @@ const getAllSubscriptionPaymentUseCase = (dependencies) => {
         })
     };
 };
-exports.getAllSubscriptionPaymentUseCase = getAllSubscriptionPaymentUseCase;
+exports.saveChatUseCase = saveChatUseCase;

@@ -9,6 +9,14 @@ const LessonProgressSchema = new Schema ({
     totalTimeWatched: {
         type: Number,
         default: 0
+    },
+    lastWatchedPosition : {
+        type: Number,
+        default: 0
+    },
+    isCompleted: {
+        type: Boolean,
+        default: false
     }
 })
 

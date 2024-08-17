@@ -47,7 +47,7 @@ export const stripeWebhookHandler = (dependencies: IDepencencies) => {
 };
 
 const handleCourseCheckoutSession = async (session: any, dependencies: IDepencencies) => {
-    const { useCases: { savePaymentUseCase } } = dependencies;
+    const { useCases: { savePaymentUseCase, saveChatUseCase } } = dependencies;
     const { courseId, userId, instructorRef } = session.metadata;
     const amount = session.amount_total / 100;
     const method = session.payment_method_types[0];
@@ -79,6 +79,7 @@ const handleCourseCheckoutSession = async (session: any, dependencies: IDepencen
         
         await paymentSuccessProducer(enrollmentData, "course-service-topic");
         await createChatProducer(chatData, "chat-service-topic");
+        const chatResponse = await saveChatUseCase(dependencies).execute(chatData);
         
         console.log("Course payment processed successfully", response);
     } catch (error) {

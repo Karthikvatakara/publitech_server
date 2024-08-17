@@ -13,22 +13,22 @@ export const paymentRoutes = (dependencies:IDepencencies) => {
     const router  = Router();
 
     router.route("/create-checkout-session")
-        .post(createCheckOutSession);
+        .post(jwtMiddleware,createCheckOutSession);
 
     router.route("/create-subscription-checkout-session")
-        .post(createSubscriptionCheckout)
+        .post(jwtMiddleware,createSubscriptionCheckout)
 
     router.route("/webhook")
         .post(express.raw({ type: 'application/json' }), stripeWebhook);
         
     router.route("/success")
-        .get(paymentSuccess)
+        .get(jwtMiddleware,paymentSuccess)
     
     router.route("/admin/payments")
-        .get(getAllCoursePayments)
+        .get(jwtMiddleware,verifyAdmin,getAllCoursePayments)
 
     router.route("/admin/subscriptionPayments")
-        .get(getAllSubscriptionPayments)
+        .get(jwtMiddleware,verifyAdmin,getAllSubscriptionPayments)
         
     return router  
 }

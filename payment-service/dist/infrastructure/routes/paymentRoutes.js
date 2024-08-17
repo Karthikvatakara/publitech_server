@@ -7,21 +7,23 @@ exports.paymentRoutes = void 0;
 const express_1 = require("express");
 const controllers_1 = require("../../presentation/controllers");
 const express_2 = __importDefault(require("express"));
+const jwtMiddleware_1 = require("../../_lib/common/middlewares/jwtMiddleware");
+const verifyAdmin_1 = require("../../_lib/common/middlewares/verifyAdmin");
 const paymentRoutes = (dependencies) => {
     const { createCheckOutSession, stripeWebhook, paymentSuccess, createSubscriptionCheckout, getAllCoursePayments, getAllSubscriptionPayments } = (0, controllers_1.controllers)(dependencies);
     const router = (0, express_1.Router)();
     router.route("/create-checkout-session")
-        .post(createCheckOutSession);
+        .post(jwtMiddleware_1.jwtMiddleware, createCheckOutSession);
     router.route("/create-subscription-checkout-session")
-        .post(createSubscriptionCheckout);
+        .post(jwtMiddleware_1.jwtMiddleware, createSubscriptionCheckout);
     router.route("/webhook")
         .post(express_2.default.raw({ type: 'application/json' }), stripeWebhook);
     router.route("/success")
-        .get(paymentSuccess);
+        .get(jwtMiddleware_1.jwtMiddleware, paymentSuccess);
     router.route("/admin/payments")
-        .get(getAllCoursePayments);
+        .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, getAllCoursePayments);
     router.route("/admin/subscriptionPayments")
-        .get(getAllSubscriptionPayments);
+        .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, getAllSubscriptionPayments);
     return router;
 };
 exports.paymentRoutes = paymentRoutes;

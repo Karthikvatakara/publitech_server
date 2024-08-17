@@ -25,6 +25,9 @@ const verifyInstructor = (req, res, next) => __awaiter(void 0, void 0, void 0, f
     if (!user) {
         return ErrorResponse_1.default.unAuthorized("user not exist");
     }
+    if (user.isBlocked) {
+        return ErrorResponse_1.default.unAuthorized("you are blocked");
+    }
     if (user.role !== "instructor") {
         return ErrorResponse_1.default.unAuthorized("user is not instructor");
     }

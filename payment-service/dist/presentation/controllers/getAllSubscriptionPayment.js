@@ -14,11 +14,24 @@ const getAllSubscriptionPaymentController = (dependencies) => {
     const { useCases: { getAllSubscriptionPaymentUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getSubscriptionPayment = yield getAllSubscriptionPaymentUseCase(dependencies).execute();
-            if (!getSubscriptionPayment) {
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 5;
+            const status = req.query.status;
+            const search = req.query.search;
+            console.log("🚀 ~ returnasync ~ page:", page);
+            console.log("🚀 ~ returnasync ~ limit:", limit);
+            console.log("🚀 ~ returnasync ~ status:", status);
+            console.log("🚀 ~ returnasync ~ search:", search);
+            const { subscriptions, totalPages, totalCount } = yield getAllSubscriptionPaymentUseCase(dependencies).execute(page, limit, status, search);
+            if (!subscriptions) {
                 throw new Error("subscription not found");
             }
-            res.status(200).json({ success: true, data: getSubscriptionPayment, message: "subscription payment fetched succesfully" });
+            res.status(200).
+                json({ success: true,
+                data: subscriptions,
+                totalPages,
+                totalCount,
+                message: "subscription payment fetched succesfully" });
         }
         catch (error) {
             next(error);

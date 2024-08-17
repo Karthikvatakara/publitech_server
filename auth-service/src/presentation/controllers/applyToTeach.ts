@@ -47,8 +47,8 @@ export const applyToTeachController = (dependencies:IDependencies) => {
             applyToTeachProducer(value,"course-service-topic")
 
             res.status(200).json({success:true,data:applicationData, message:"application submitted successfullly"})
-        }catch(error:any){
-            console.error(error,"error in the applytoteach controller")
+        }catch(error){
+            // console.error(error,"error in the applytoteach controller")
             next(error);
         }
     }

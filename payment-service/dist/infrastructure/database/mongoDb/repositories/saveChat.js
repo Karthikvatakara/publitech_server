@@ -9,18 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllSubscriptionPaymentUseCase = void 0;
-const getAllSubscriptionPaymentUseCase = (dependencies) => {
-    const { repositories: { getAllSubscriptionPayment } } = dependencies;
-    return {
-        execute: (page, limit, status, search) => __awaiter(void 0, void 0, void 0, function* () {
-            try {
-                return yield getAllSubscriptionPayment(page, limit, status, search);
+exports.saveChat = void 0;
+const chat_1 = require("../models/chat");
+const saveChat = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const chatData = {
+            users: [data.userId, data.instructorRef],
+            isGroupChat: false
+        };
+        const isChatExist = yield chat_1.chat.findOne({
+            users: {
+                $all: [data.userId, data.instructorRef]
             }
-            catch (error) {
-                throw new Error(error === null || error === void 0 ? void 0 : error.message);
-            }
-        })
-    };
-};
-exports.getAllSubscriptionPaymentUseCase = getAllSubscriptionPaymentUseCase;
+        });
+        if (isChatExist) {
+            return null;
+        }
+        const newChat = yield chat_1.chat.create(chatData);
+        return newChat;
+    }
+    catch (error) {
+        throw new Error(error === null || error === void 0 ? void 0 : error.message);
+    }
+});
+exports.saveChat = saveChat;

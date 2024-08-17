@@ -19,3 +19,4 @@ __exportStar(require("./createSubscriptionPayment"), exports);
 __exportStar(require("./getAllCoursePayments"), exports);
 __exportStar(require("./getAllSubscriptionPayment"), exports);
 __exportStar(require("./editUserProfileConsumer"), exports);
+__exportStar(require("./saveChat"), exports);
