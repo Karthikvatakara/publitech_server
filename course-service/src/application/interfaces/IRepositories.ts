@@ -1,4 +1,6 @@
-import { CategoryEntity, UserEntity,CourseEntity,EnrollmentEntity } from "../../domain/entities";
+import { CategoryEntity, UserEntity,CourseEntity,EnrollmentEntity, LessonProgress } from "../../domain/entities";
+import { assessmentEntity } from "../../domain/entities/assessmentEntity";
+import { resultEntity } from "../../domain/entities/resultEntity";
 
 export interface IRespositories {
     findByEmail:(email:string) => Promise<UserEntity | null>,
@@ -21,4 +23,15 @@ export interface IRespositories {
     getAllCourseOfInstructor:( id: string, page: number, limit: number, search: string, stage: string) =>  Promise <{ courses: CourseEntity[], totalPages: number, currentPage: number} | null>
     courseStatusChangeByInstructor:( id: string, status: "block" | "unblock") =>  Promise<CourseEntity | null>
     usersForInstructorChat: ( instructorId: string ) => Promise< UserEntity[] | null>
+    lessonProgress:(userId: string, courseId: string, lessonId: string, timeWatched: number, totalDuration: number) => Promise<void>
+    getLessonProgress:(userId: string, lessonId: string, courseId: string) => Promise<LessonProgress | null> 
+    getEnrollmentByCourseId: ( courseId: string, userId: string ) => Promise<EnrollmentEntity | null>
+    getAllCoursesExamCreation: (instructorRef: string) => Promise<CourseEntity[] | null>
+    createExam: ( data: assessmentEntity ) => Promise< assessmentEntity | null>
+    examsOfInstructor : ( instructorId: string) => Promise<assessmentEntity[] | null>
+    isExamExist: ( courseId: string ) => Promise<assessmentEntity | null>
+    isExamExistByExamId: ( examId: string ) => Promise<assessmentEntity | null>
+    updateExam:( examId: string, data: assessmentEntity ) => Promise<assessmentEntity | null>
+    createExamResult :( data: resultEntity ) => Promise<resultEntity | null>
+    fetchExamResultById:(resultId: string) => Promise<resultEntity | null>
 }

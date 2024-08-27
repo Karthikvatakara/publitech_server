@@ -19,6 +19,17 @@ const getEnrollmentByUserIdController_1 = require("./getEnrollmentByUserIdContro
 const getAllCourseOfInstructorController_1 = require("./getAllCourseOfInstructorController");
 const courseStatusChangeByInstructorController_1 = require("./courseStatusChangeByInstructorController");
 const usersForInstructorChatController_1 = require("./usersForInstructorChatController");
+const lessonProgressController_1 = require("./lessonProgressController");
+const getLessonProgressController_1 = require("./getLessonProgressController");
+const getEnrollmentByCourseId_1 = require("./getEnrollmentByCourseId");
+const getAllCoursesExamCreationController_1 = require("./getAllCoursesExamCreationController");
+const createExamController_1 = require("./createExamController");
+const examsOfInstructorController_1 = require("./examsOfInstructorController");
+const isExamExistController_1 = require("./isExamExistController");
+const isExamExistByExamIdController_1 = require("./isExamExistByExamIdController");
+const updateExamController_1 = require("./updateExamController");
+const createExamResultController_1 = require("./createExamResultController");
+const fetchExamResultByIdController_1 = require("./fetchExamResultByIdController");
 const controllers = (dependencies) => {
     return {
         createCategory: (0, createCategoryController_1.createCategoryController)(dependencies),
@@ -39,6 +50,17 @@ const controllers = (dependencies) => {
         getAllCourseOfInstructor: (0, getAllCourseOfInstructorController_1.getAllCourseOfInstructorController)(dependencies),
         courseStatusChangeByInstructor: (0, courseStatusChangeByInstructorController_1.courseStatusChangeByInstructorController)(dependencies),
         usersForInstructorChat: (0, usersForInstructorChatController_1.usersForInstructorChatController)(dependencies),
+        SubmitlessonProgress: (0, lessonProgressController_1.lessonProgressController)(dependencies),
+        getLessonProgress: (0, getLessonProgressController_1.getLessonProgressController)(dependencies),
+        getEnrollmentByCourseId: (0, getEnrollmentByCourseId_1.getEnrollmentByCourseIdController)(dependencies),
+        getAllCoursesOfExamCreation: (0, getAllCoursesExamCreationController_1.getAllCoursesExamCreationController)(dependencies),
+        createExam: (0, createExamController_1.createExamController)(dependencies),
+        examsOfInstructor: (0, examsOfInstructorController_1.examsOfInstructorController)(dependencies),
+        isExamExist: (0, isExamExistController_1.isExamExistController)(dependencies),
+        isExamExistByExamId: (0, isExamExistByExamIdController_1.isExamExistByExamIdcontroller)(dependencies),
+        updateExam: (0, updateExamController_1.updateExamController)(dependencies),
+        createExamResult: (0, createExamResultController_1.createExamResultController)(dependencies),
+        fetchExamResult: (0, fetchExamResultByIdController_1.fetchExamResultByIdController)(dependencies)
     };
 };
 exports.controllers = controllers;

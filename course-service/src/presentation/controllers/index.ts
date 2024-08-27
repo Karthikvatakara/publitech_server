@@ -17,6 +17,17 @@ import { getEnrollmentByUserIdController } from "./getEnrollmentByUserIdControll
 import { getAllCourseOfInstructorController } from "./getAllCourseOfInstructorController";
 import { courseStatusChangeByInstructorController } from "./courseStatusChangeByInstructorController";
 import { usersForInstructorChatController } from "./usersForInstructorChatController";
+import { lessonProgressController } from "./lessonProgressController";
+import { getLessonProgressController } from "./getLessonProgressController";
+import { getEnrollmentByCourseIdController } from "./getEnrollmentByCourseId";
+import { getAllCoursesExamCreationController } from "./getAllCoursesExamCreationController";
+import { createExamController } from "./createExamController";
+import { examsOfInstructorController } from "./examsOfInstructorController";
+import { isExamExistController } from "./isExamExistController";
+import { isExamExistByExamIdcontroller } from "./isExamExistByExamIdController";
+import { updateExamController } from "./updateExamController";
+import { createExamResultController } from "./createExamResultController";
+import { fetchExamResultByIdController } from "./fetchExamResultByIdController";
 
 export const controllers = (dependencies:IDependencies) => {
     return {
@@ -38,5 +49,16 @@ export const controllers = (dependencies:IDependencies) => {
         getAllCourseOfInstructor: getAllCourseOfInstructorController(dependencies),
         courseStatusChangeByInstructor: courseStatusChangeByInstructorController(dependencies),
         usersForInstructorChat : usersForInstructorChatController(dependencies),
+        SubmitlessonProgress: lessonProgressController(dependencies),
+        getLessonProgress: getLessonProgressController(dependencies),
+        getEnrollmentByCourseId: getEnrollmentByCourseIdController(dependencies),
+        getAllCoursesOfExamCreation :getAllCoursesExamCreationController(dependencies),
+        createExam : createExamController(dependencies),
+        examsOfInstructor: examsOfInstructorController(dependencies),
+        isExamExist: isExamExistController(dependencies),
+        isExamExistByExamId : isExamExistByExamIdcontroller(dependencies),
+        updateExam: updateExamController(dependencies),
+        createExamResult: createExamResultController(dependencies),
+        fetchExamResult: fetchExamResultByIdController(dependencies)
     }
 }

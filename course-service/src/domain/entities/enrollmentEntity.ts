@@ -1,6 +1,8 @@
 import { Types } from "mongoose";
 
-interface LessonProgress {
+export interface LessonProgress {
+    isCompleted: boolean;
+    lastWatchedPosition: number;
     lessonId: Types.ObjectId | string,
     totalTimeWatched: number
 }

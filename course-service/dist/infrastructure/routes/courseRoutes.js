@@ -7,7 +7,7 @@ const jwtMiddleware_1 = require("../../_lib/common/middlewares/jwtMiddleware");
 const verifyAdmin_1 = require("../../_lib/common/middlewares/verifyAdmin");
 const verifyInstructor_1 = require("../../_lib/common/middlewares/verifyInstructor");
 const courseRoutes = (dependencies) => {
-    const { createCategory, getAllCategory, updateCategory, blockCategory, getAllAvailabeCategory, createCourse, getAllCourse, getSingleCourse, updateCourse, getCompleteCourses, updateStatus, getCoursesToUser, createEnrollment, isEnrollmentExist, getEnrollmentByUserId, getAllCourseOfInstructor, courseStatusChangeByInstructor, usersForInstructorChat } = (0, index_1.controllers)(dependencies);
+    const { createCategory, getAllCategory, updateCategory, blockCategory, getAllAvailabeCategory, createCourse, getAllCourse, getSingleCourse, updateCourse, getCompleteCourses, updateStatus, getCoursesToUser, createEnrollment, isEnrollmentExist, getEnrollmentByUserId, getAllCourseOfInstructor, courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, fetchExamResult } = (0, index_1.controllers)(dependencies);
     const router = (0, express_1.Router)();
     router.route("/admin/category")
         .post(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, createCategory)
@@ -45,6 +45,30 @@ const courseRoutes = (dependencies) => {
     // fetching users for chat
     router.route("/usersforChat")
         .get(jwtMiddleware_1.jwtMiddleware, usersForInstructorChat);
+    router.route("/lesson-progress")
+        .post(SubmitlessonProgress);
+    router.route("/lesson-progress/:userId/:courseId/:lessonId")
+        .get(getLessonProgress);
+    router.route("/enrollment/:courseId/:userId")
+        .get(getEnrollmentByCourseId);
+    router.route("/getAllInstructorCourse")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyInstructor_1.verifyInstructor, getAllCoursesOfExamCreation);
+    router.route("/createExam")
+        .post(createExam);
+    // fetching exams of particular instructor
+    router.route("/getexams/")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyInstructor_1.verifyInstructor, examsOfInstructor);
+    // checking that exam is exist for a particular course
+    router.route("/exams/:courseId")
+        .get(jwtMiddleware_1.jwtMiddleware, isExamExist);
+    router.route("/examsbyexamid/:examId")
+        .get(jwtMiddleware_1.jwtMiddleware, isExamExistByExamId);
+    router.route("/exams/update/:examId")
+        .put(jwtMiddleware_1.jwtMiddleware, verifyInstructor_1.verifyInstructor, updateExam);
+    router.route("/exam/submit")
+        .post(jwtMiddleware_1.jwtMiddleware, createExamResult);
+    router.route("/examresult/:resultId")
+        .get(jwtMiddleware_1.jwtMiddleware, fetchExamResult);
     return router;
 };
 exports.courseRoutes = courseRoutes;

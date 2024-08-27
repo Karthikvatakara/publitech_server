@@ -2,7 +2,10 @@ import { IFindUserByEmail,IFindUserById,ICreateCategoryUseCase,IGetAllCategoryUs
     IBlockCategoryUseCase,IGetAllAvailableCategoryUseCase,ICreateCourseUseCase,IGetAllCourseUseCase,
 IGetSingleCourseUseCase,IUpdateCourseUseCase,IGetCompleteCoursUseCase,IUpdateCourseStatusUseCase
 ,IGetCoursesToUser,ICreteEnrollmentUseCase,IIsEnrollmentExistUseCase,IGetEnrollmentByUserId,IGetAllCourseOfInstructorUseCase, 
-ICourseStatusChangeByInstructorUseCase, IUsersForInstructorChatUseCase } from "../../domain/useCaseInterface";
+ICourseStatusChangeByInstructorUseCase, IUsersForInstructorChatUseCase, 
+ILessonProgressUseCase, IGetLessonProgressUseCase, IGetEnrollmentByCourseIdUseCase, 
+IGetAllCoursesExamCreationUseCase, ICreateExamUseCase, IExamsOfInstructorUseCase,IIsExamExistUseCase, 
+IIsExamExistByExamIdUseCase, IUpdateExamUseCase, ICreateExamResultUseCase, IFetchExamResultByIdUseCase} from "../../domain/useCaseInterface";
 import { IDependencies } from "./IDependency";  
 
 export interface IUseCases {
@@ -26,4 +29,15 @@ export interface IUseCases {
     getAllCourseOfInsructorUseCase:( dependencies: IDependencies) => IGetAllCourseOfInstructorUseCase
     courseStatusChangeByInstructorUseCase:( dependencies: IDependencies) => ICourseStatusChangeByInstructorUseCase
     usersForInstructorChatUseCase:( dependencies: IDependencies ) => IUsersForInstructorChatUseCase
+    lessonProgressUseCase: (dependencies: IDependencies) => ILessonProgressUseCase
+    getLessonProgressUseCase: (dependencies: IDependencies) => IGetLessonProgressUseCase
+    getEnrollmentByCourseIdUseCase: ( dependencies: IDependencies ) => IGetEnrollmentByCourseIdUseCase
+    getAllCoursesExamCreationUseCase: ( dependencies: IDependencies ) => IGetAllCoursesExamCreationUseCase
+    createExamUseCase : ( dependencies: IDependencies ) => ICreateExamUseCase;
+    examsOfInstructorUseCase: ( dependencies: IDependencies ) => IExamsOfInstructorUseCase
+    isExamExistUseCase: ( dependencies: IDependencies ) => IIsExamExistUseCase
+    isExamExistByExamIdUseCase: ( dependencies: IDependencies ) => IIsExamExistByExamIdUseCase
+    updateExamUseCase: ( dependencies: IDependencies ) => IUpdateExamUseCase
+    createExamResultUseCase: ( dependencies: IDependencies ) => ICreateExamResultUseCase
+    fetchExamResultByIdUseCase: ( dependencies: IDependencies ) => IFetchExamResultByIdUseCase
 }

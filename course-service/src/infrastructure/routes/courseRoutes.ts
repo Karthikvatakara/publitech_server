@@ -9,7 +9,9 @@ export const courseRoutes = (dependencies:IDependencies) => {
     const { createCategory,getAllCategory,updateCategory,blockCategory,getAllAvailabeCategory,
         createCourse,getAllCourse,getSingleCourse,updateCourse,getCompleteCourses,updateStatus,
         getCoursesToUser,createEnrollment,isEnrollmentExist,getEnrollmentByUserId,getAllCourseOfInstructor,
-         courseStatusChangeByInstructor, usersForInstructorChat} = controllers(dependencies);
+         courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, 
+         getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, 
+         examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, fetchExamResult} = controllers(dependencies);
 
     const router = Router();
 
@@ -64,6 +66,45 @@ export const courseRoutes = (dependencies:IDependencies) => {
     // fetching users for chat
     router.route("/usersforChat")
         .get(jwtMiddleware,usersForInstructorChat)
+
+    router.route("/lesson-progress")
+        .post(SubmitlessonProgress)
+    
+    router.route("/lesson-progress/:userId/:courseId/:lessonId")
+        .get(getLessonProgress)
+    
+    router.route("/enrollment/:courseId/:userId")
+        .get(getEnrollmentByCourseId)
+
+    router.route("/getAllInstructorCourse")
+        .get(jwtMiddleware,verifyInstructor,getAllCoursesOfExamCreation)    
+
+    router.route("/createExam")
+        .post(createExam)
+        
+
+    // fetching exams of particular instructor
+    router.route("/getexams/")
+        .get(jwtMiddleware,verifyInstructor,examsOfInstructor)
+
+     
+
+    // checking that exam is exist for a particular course
+    router.route("/exams/:courseId")
+        .get(jwtMiddleware,isExamExist)
+
+    router.route("/examsbyexamid/:examId")
+        .get(jwtMiddleware,isExamExistByExamId)
+
+    router.route("/exams/update/:examId")
+        .put(jwtMiddleware,verifyInstructor,updateExam)
+
+    router.route("/exam/submit")
+        .post(jwtMiddleware,createExamResult)
+        
+    
+    router.route("/examresult/:resultId")
+        .get(jwtMiddleware,fetchExamResult)
 
 
         return router;
