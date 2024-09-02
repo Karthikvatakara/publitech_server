@@ -45,3 +45,7 @@ __exportStar(require("./isExamExistByExamIdUseCase"), exports);
 __exportStar(require("./updateExamUseCase"), exports);
 __exportStar(require("./createExamResultUseCase"), exports);
 __exportStar(require("./fetchExamResultByIdUseCase"), exports);
+__exportStar(require("./getExamResultByExamIdUseCase"), exports);
+__exportStar(require("./getResultsByUserIdUseCase"), exports);
+__exportStar(require("./checkResultOfAssessmentAndUserIdUseCase"), exports);
+__exportStar(require("./updateResultUseCase"), exports);

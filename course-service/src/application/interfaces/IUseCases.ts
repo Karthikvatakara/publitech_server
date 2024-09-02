@@ -5,7 +5,10 @@ IGetSingleCourseUseCase,IUpdateCourseUseCase,IGetCompleteCoursUseCase,IUpdateCou
 ICourseStatusChangeByInstructorUseCase, IUsersForInstructorChatUseCase, 
 ILessonProgressUseCase, IGetLessonProgressUseCase, IGetEnrollmentByCourseIdUseCase, 
 IGetAllCoursesExamCreationUseCase, ICreateExamUseCase, IExamsOfInstructorUseCase,IIsExamExistUseCase, 
-IIsExamExistByExamIdUseCase, IUpdateExamUseCase, ICreateExamResultUseCase, IFetchExamResultByIdUseCase} from "../../domain/useCaseInterface";
+IIsExamExistByExamIdUseCase, IUpdateExamUseCase, ICreateExamResultUseCase, IFetchExamResultByIdUseCase,
+IGetExamResultByExamIdUseCase,
+IGetResultsByUserIdUseCase , ICheckResultOfAssessmentAndUserIdUseCase,
+IUpdateResultUseCase} from "../../domain/useCaseInterface";
 import { IDependencies } from "./IDependency";  
 
 export interface IUseCases {
@@ -40,4 +43,8 @@ export interface IUseCases {
     updateExamUseCase: ( dependencies: IDependencies ) => IUpdateExamUseCase
     createExamResultUseCase: ( dependencies: IDependencies ) => ICreateExamResultUseCase
     fetchExamResultByIdUseCase: ( dependencies: IDependencies ) => IFetchExamResultByIdUseCase
+    getExamResultByExamIdUseCase: ( dependencies: IDependencies) =>  IGetExamResultByExamIdUseCase
+    getResultsByUserIdUseCase:(dependencies: IDependencies) => IGetResultsByUserIdUseCase
+    checkResultOfAssessmentAndUserIdUseCase: ( dependencies: IDependencies ) => ICheckResultOfAssessmentAndUserIdUseCase
+    updateResultUseCase: ( dependencies: IDependencies ) => IUpdateResultUseCase  
 }

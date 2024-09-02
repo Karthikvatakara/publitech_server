@@ -7,7 +7,7 @@ const jwtMiddleware_1 = require("../../_lib/common/middlewares/jwtMiddleware");
 const verifyAdmin_1 = require("../../_lib/common/middlewares/verifyAdmin");
 const verifyInstructor_1 = require("../../_lib/common/middlewares/verifyInstructor");
 const courseRoutes = (dependencies) => {
-    const { createCategory, getAllCategory, updateCategory, blockCategory, getAllAvailabeCategory, createCourse, getAllCourse, getSingleCourse, updateCourse, getCompleteCourses, updateStatus, getCoursesToUser, createEnrollment, isEnrollmentExist, getEnrollmentByUserId, getAllCourseOfInstructor, courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, fetchExamResult } = (0, index_1.controllers)(dependencies);
+    const { createCategory, getAllCategory, updateCategory, blockCategory, getAllAvailabeCategory, createCourse, getAllCourse, getSingleCourse, updateCourse, getCompleteCourses, updateStatus, getCoursesToUser, createEnrollment, isEnrollmentExist, getEnrollmentByUserId, getAllCourseOfInstructor, courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, fetchExamResult, getExamResultByExamId, certificateGenerator, getResultsByUserId } = (0, index_1.controllers)(dependencies);
     const router = (0, express_1.Router)();
     router.route("/admin/category")
         .post(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, createCategory)
@@ -69,6 +69,12 @@ const courseRoutes = (dependencies) => {
         .post(jwtMiddleware_1.jwtMiddleware, createExamResult);
     router.route("/examresult/:resultId")
         .get(jwtMiddleware_1.jwtMiddleware, fetchExamResult);
+    router.route("/isResultExist/:assessmentRef")
+        .get(getExamResultByExamId);
+    router.route("/generate-certificate/:assessmentRef")
+        .post(jwtMiddleware_1.jwtMiddleware, certificateGenerator);
+    router.route("/results")
+        .get(jwtMiddleware_1.jwtMiddleware, getResultsByUserId);
     return router;
 };
 exports.courseRoutes = courseRoutes;

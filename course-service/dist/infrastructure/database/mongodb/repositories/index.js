@@ -53,3 +53,7 @@ __exportStar(require("./isExamExistByExamId"), exports);
 __exportStar(require("./updateExam"), exports);
 __exportStar(require("./createExamResult"), exports);
 __exportStar(require("./fetchExamResultById"), exports);
+__exportStar(require("./getExamResultByExamId"), exports);
+__exportStar(require("./getResultsByUserId"), exports);
+__exportStar(require("./checkResultOfAssessmentAndUserId"), exports);
+__exportStar(require("./updateResult"), exports);

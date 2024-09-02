@@ -11,7 +11,8 @@ export const courseRoutes = (dependencies:IDependencies) => {
         getCoursesToUser,createEnrollment,isEnrollmentExist,getEnrollmentByUserId,getAllCourseOfInstructor,
          courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, 
          getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, 
-         examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, fetchExamResult} = controllers(dependencies);
+         examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, 
+         fetchExamResult, getExamResultByExamId, certificateGenerator, getResultsByUserId } = controllers(dependencies);
 
     const router = Router();
 
@@ -106,6 +107,14 @@ export const courseRoutes = (dependencies:IDependencies) => {
     router.route("/examresult/:resultId")
         .get(jwtMiddleware,fetchExamResult)
 
+    router.route("/isResultExist/:assessmentRef")
+        .get(getExamResultByExamId)
+
+    router.route("/generate-certificate/:assessmentRef")
+        .post(jwtMiddleware,certificateGenerator)
+
+    router.route("/results")
+        .get(jwtMiddleware,getResultsByUserId)
 
         return router;
 }

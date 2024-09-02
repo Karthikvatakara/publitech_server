@@ -29,3 +29,7 @@ export * from "./isExamExistByExamIdUseCase";
 export * from "./updateExamUseCase";
 export * from "./createExamResultUseCase";
 export * from "./fetchExamResultByIdUseCase";
+export * from "./getExamResultByExamIdUseCase";
+export * from "./getResultsByUserIdUseCase";
+export * from "./checkResultOfAssessmentAndUserIdUseCase";
+export * from "./updateResultUseCase"

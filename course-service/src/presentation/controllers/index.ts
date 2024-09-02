@@ -28,6 +28,10 @@ import { isExamExistByExamIdcontroller } from "./isExamExistByExamIdController";
 import { updateExamController } from "./updateExamController";
 import { createExamResultController } from "./createExamResultController";
 import { fetchExamResultByIdController } from "./fetchExamResultByIdController";
+import { getExamResultByExamId } from "../../infrastructure/database/mongodb/repositories";
+import { getExamResultByExamIdController } from "./getExamResultByExamIdController";
+import { certificateGeneratorController } from "./certificateGenerator";
+import { getResultsByUserIdController } from "./getResultsByUserIdController";
 
 export const controllers = (dependencies:IDependencies) => {
     return {
@@ -59,6 +63,9 @@ export const controllers = (dependencies:IDependencies) => {
         isExamExistByExamId : isExamExistByExamIdcontroller(dependencies),
         updateExam: updateExamController(dependencies),
         createExamResult: createExamResultController(dependencies),
-        fetchExamResult: fetchExamResultByIdController(dependencies)
+        fetchExamResult: fetchExamResultByIdController(dependencies),
+        getExamResultByExamId: getExamResultByExamIdController(dependencies),
+        certificateGenerator:certificateGeneratorController(dependencies),
+        getResultsByUserId: getResultsByUserIdController(dependencies)
     }
 }

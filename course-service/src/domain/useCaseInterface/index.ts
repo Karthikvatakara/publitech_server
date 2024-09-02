@@ -29,3 +29,7 @@ export * from "./IIsExamExistByExamIdUseCase";
 export * from "./IUpdateExamUseCase";
 export * from "./ICreateExamResultUseCase";
 export * from "./IFetchExamResultByIdUseCase";
+export * from "./IGetExamResultByExamIdUseCase";
+export * from "./IGetResultsByUserIdUseCase";
+export * from "./ICheckResultOfAssessmentAndUserIdUseCase";
+export * from "./IUpdateResultUseCase";

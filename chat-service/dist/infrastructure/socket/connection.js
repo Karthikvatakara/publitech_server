@@ -34,6 +34,15 @@ const connectSocketIo = (server) => {
             io.to(chat._id).emit("message received", message);
             // socket.to(chat._id).emit("message received",message)
         });
+        socket.on("start-call", ({ roomId, localPeerId }) => {
+            console.log(roomId, "roomId");
+            console.log(localPeerId, "videoCall");
+            socket.to(roomId).emit("incoming-call", localPeerId);
+            console.log("🚀 ~ socket.on ~ roomId:", roomId);
+        });
+        socket.on("end-call", (roomId) => {
+            socket.to(roomId).emit("end-call");
+        });
         socket.on("disconnect", () => {
             console.log("Socket disconnected");
             if (userId !== "undefined") {

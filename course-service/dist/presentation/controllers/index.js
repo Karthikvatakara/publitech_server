@@ -30,6 +30,9 @@ const isExamExistByExamIdController_1 = require("./isExamExistByExamIdController
 const updateExamController_1 = require("./updateExamController");
 const createExamResultController_1 = require("./createExamResultController");
 const fetchExamResultByIdController_1 = require("./fetchExamResultByIdController");
+const getExamResultByExamIdController_1 = require("./getExamResultByExamIdController");
+const certificateGenerator_1 = require("./certificateGenerator");
+const getResultsByUserIdController_1 = require("./getResultsByUserIdController");
 const controllers = (dependencies) => {
     return {
         createCategory: (0, createCategoryController_1.createCategoryController)(dependencies),
@@ -60,7 +63,10 @@ const controllers = (dependencies) => {
         isExamExistByExamId: (0, isExamExistByExamIdController_1.isExamExistByExamIdcontroller)(dependencies),
         updateExam: (0, updateExamController_1.updateExamController)(dependencies),
         createExamResult: (0, createExamResultController_1.createExamResultController)(dependencies),
-        fetchExamResult: (0, fetchExamResultByIdController_1.fetchExamResultByIdController)(dependencies)
+        fetchExamResult: (0, fetchExamResultByIdController_1.fetchExamResultByIdController)(dependencies),
+        getExamResultByExamId: (0, getExamResultByExamIdController_1.getExamResultByExamIdController)(dependencies),
+        certificateGenerator: (0, certificateGenerator_1.certificateGeneratorController)(dependencies),
+        getResultsByUserId: (0, getResultsByUserIdController_1.getResultsByUserIdController)(dependencies)
     };
 };
 exports.controllers = controllers;

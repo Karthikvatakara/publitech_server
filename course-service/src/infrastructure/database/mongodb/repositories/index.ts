@@ -37,3 +37,7 @@ export * from "./isExamExistByExamId";
 export * from "./updateExam";
 export * from "./createExamResult";
 export * from "./fetchExamResultById";
+export * from "./getExamResultByExamId"
+export * from "./getResultsByUserId";
+export * from "./checkResultOfAssessmentAndUserId";
+export * from "./updateResult";

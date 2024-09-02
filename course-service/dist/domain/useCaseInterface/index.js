@@ -45,3 +45,7 @@ __exportStar(require("./IIsExamExistByExamIdUseCase"), exports);
 __exportStar(require("./IUpdateExamUseCase"), exports);
 __exportStar(require("./ICreateExamResultUseCase"), exports);
 __exportStar(require("./IFetchExamResultByIdUseCase"), exports);
+__exportStar(require("./IGetExamResultByExamIdUseCase"), exports);
+__exportStar(require("./IGetResultsByUserIdUseCase"), exports);
+__exportStar(require("./ICheckResultOfAssessmentAndUserIdUseCase"), exports);
+__exportStar(require("./IUpdateResultUseCase"), exports);

@@ -14,8 +14,16 @@ const result_1 = require("../models/result");
 const fetchExamResultById = (resultId) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("🚀 ~ fetchExamResultById ~ resultId:", resultId);
     try {
-        const existingResut = yield result_1.Result.findById(resultId);
-        return existingResut;
+        const existingResult = yield result_1.Result.findById(resultId)
+            .populate({
+            path: 'userRef',
+            select: 'username email profile contact',
+        })
+            .populate({
+            path: 'assessmentRef',
+            select: 'courseId',
+        });
+        return existingResult;
     }
     catch (error) {
         throw new Error(error === null || error === void 0 ? void 0 : error.message);
