@@ -15,6 +15,7 @@ const connectSocketIo = (server: Server) => {
     })
 
     const userSocketMap: { [ key: string ]: string } = {};
+    let liveStreams = {};
 
     io.on("connection",(socket: Socket) => {
         console.log("socket connected")
@@ -26,6 +27,7 @@ const connectSocketIo = (server: Server) => {
 
         io.emit("getOnlineUsers", Object.keys(userSocketMap));
         console.log(userSocketMap,"??????????????????")
+        console.log(liveStreams,"??????????????????")
         
         socket.on("join chat",(room) => {
             socket.join(room)
@@ -57,6 +59,8 @@ const connectSocketIo = (server: Server) => {
             socket.to(roomId).emit("end-call")
         })
         
+        
+
         socket.on("disconnect", () => {
             console.log("Socket disconnected");
             if (userId !== "undefined") {

@@ -10,6 +10,7 @@ const connectSocketIo = (server) => {
         },
     });
     const userSocketMap = {};
+    let liveStreams = {};
     io.on("connection", (socket) => {
         console.log("socket connected");
         const userId = socket.handshake.query.userId;
@@ -18,6 +19,7 @@ const connectSocketIo = (server) => {
         }
         io.emit("getOnlineUsers", Object.keys(userSocketMap));
         console.log(userSocketMap, "??????????????????");
+        console.log(liveStreams, "??????????????????");
         socket.on("join chat", (room) => {
             socket.join(room);
             console.log(room, "room is consollingmmmm");
