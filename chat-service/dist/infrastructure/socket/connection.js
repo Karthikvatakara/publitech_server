@@ -57,23 +57,28 @@ const connectSocketIo = (server) => {
         socket.on('start-live-stream', ({ streamId, instructorId }) => {
             console.log("🚀 ~ socket.on ~ instructorId:11111111111111111", instructorId);
             console.log("🚀 ~ socket.on ~ streamId:222222222222222222222", streamId);
-            socket.emit('new-live-stream', { streamId, instructorId });
+            io.emit('new-live-stream', { streamId, instructorId });
         });
         socket.on('end-live-stream', ({ streamId }) => {
-            socket.broadcast.emit('live-stream-ended', { streamId });
+            io.emit('live-stream-ended', { streamId });
         });
         socket.on('join-live-stream', ({ streamId, studentId }) => {
+            console.log(`Student ${studentId} joining stream ${streamId}`);
             socket.join(streamId);
-            socket.to(streamId).emit('student-joined', { studentId, socketId: socket.id });
+            // io.to(streamId).emit('student-joined', { studentId, socketId: socket.id });
+            io.emit('student-joined', { studentId, socketId: socket.id });
         });
         socket.on('webrtc-offer', ({ streamId, offer, receiverSocketId }) => {
-            socket.to(receiverSocketId).emit('webrtc-offer', { offer, senderSocketId: socket.id });
+            console.log(`Sending WebRTC offer to ${receiverSocketId} for stream ${streamId}`);
+            io.to(receiverSocketId).emit('webrtc-offer', { offer, senderSocketId: socket.id });
         });
         socket.on('webrtc-answer', ({ streamId, answer, receiverSocketId }) => {
-            socket.to(receiverSocketId).emit('webrtc-answer', { answer, senderSocketId: socket.id });
+            console.log(`Sending WebRTC answer to ${receiverSocketId} for stream ${streamId}`);
+            io.to(receiverSocketId).emit('webrtc-answer', { answer, senderSocketId: socket.id });
         });
         socket.on('webrtc-ice-candidate', ({ streamId, candidate, receiverSocketId }) => {
-            socket.to(receiverSocketId).emit('webrtc-ice-candidate', { candidate, senderSocketId: socket.id });
+            console.log(`Forwarding ICE candidate to ${receiverSocketId} for stream ${streamId}`);
+            io.to(receiverSocketId).emit('webrtc-ice-candidate', { candidate, senderSocketId: socket.id });
         });
         // socket.on("join-live-class", (roomId: string) => {
         //     socket.join(roomId);
@@ -100,6 +105,7 @@ const connectSocketIo = (server) => {
                 delete userSocketMap[userId];
                 io.emit("getOnlineUsers", Object.keys(userSocketMap));
             }
+            io.emit('student-left', { socketId: socket.id });
         });
     });
 };
