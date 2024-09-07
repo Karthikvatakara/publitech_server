@@ -19,3 +19,4 @@ __exportStar(require("./ISubscriptionPaymentUseCase"), exports);
 __exportStar(require("./IGetAllCoursePaymentUseCase"), exports);
 __exportStar(require("./IGetAllSubscriptionPaymentUseCase"), exports);
 __exportStar(require("./ISaveChatUseCase"), exports);
+__exportStar(require("./IgetUserCoursePaymentsUseCase"), exports);

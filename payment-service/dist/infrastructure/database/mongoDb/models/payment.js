@@ -11,6 +11,7 @@ const paymentSchema = new mongoose_1.Schema({
     courseId: {
         type: mongoose_1.Schema.Types.ObjectId,
         required: true,
+        ref: "courses"
     },
     instructorRef: {
         type: mongoose_1.Schema.Types.ObjectId,

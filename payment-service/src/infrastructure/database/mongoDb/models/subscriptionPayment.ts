@@ -8,7 +8,8 @@ const subscriptionPaymentSchema = new Schema({
     },
     chatId: {
         type: Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref:"chats"
     },
     method: {
         type: String,

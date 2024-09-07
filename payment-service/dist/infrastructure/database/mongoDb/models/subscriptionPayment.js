@@ -9,7 +9,8 @@ const subscriptionPaymentSchema = new mongoose_1.Schema({
     },
     chatId: {
         type: mongoose_1.Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref: "chats"
     },
     method: {
         type: String,

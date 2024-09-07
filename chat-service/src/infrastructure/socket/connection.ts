@@ -16,6 +16,7 @@ const connectSocketIo = (server: Server) => {
     })
 
     const userSocketMap: { [ key: string ]: string } = {};
+    const activeLiveStreams = new Map<string, { streamId: string, instructorId: string }>();
     // let liveStreams = {};
 
     io.on("connection",(socket: Socket) => {
@@ -47,20 +48,6 @@ const connectSocketIo = (server: Server) => {
         socket.on("join chat",joinChat);
         socket.on("new message",newMessage)
 
-        // socket.on("new message",(message) => {
-        //     console.log("message in connection",message,"aaaaaaaaaaa")
-
-        //     const chat = message.chatId;
-        //     console.log("🚀 ~ socket.on ~ chat:", chat._id)
-        //     if (!chat._id) {
-        //         console.log("Chat ID is missing in the message");
-        //         return;
-        //     }
-        //     console.log("//////////////")
-        //     io.to(chat._id).emit("message received",message)
-        //     // socket.to(chat._id).emit("message received",message)
-        // })
-
         socket.on("start-call",({ roomId, localPeerId }) => {
             console.log(roomId,"roomId")
             console.log(localPeerId,"videoCall");
@@ -74,12 +61,20 @@ const connectSocketIo = (server: Server) => {
         
 
         socket.on('start-live-stream', ({ streamId, instructorId }) => {
-            console.log("🚀 ~ socket.on ~ instructorId:11111111111111111", instructorId)
-            console.log("🚀 ~ socket.on ~ streamId:222222222222222222222", streamId)
+            console.log(`Starting live stream: ${streamId} by instructor: ${instructorId}`);
+            activeLiveStreams.set(streamId, { streamId, instructorId });
             io.emit('new-live-stream', { streamId, instructorId });
           });
         
+          socket.on("get-current-live-streams", () => {
+            const currentStreams = Array.from(activeLiveStreams.values());
+            console.log("Sending current live streams:", currentStreams);
+            socket.emit('current-live-streams', currentStreams);
+          });
+
           socket.on('end-live-stream', ({ streamId }) => {
+            console.log("🚀 ~ socket.on ~ streamId:eeeeeeeeeeeeeeeeeeeend", streamId)
+            activeLiveStreams.delete(streamId);
             io.emit('live-stream-ended', { streamId });
           });
         

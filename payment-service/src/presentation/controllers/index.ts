@@ -6,6 +6,7 @@ import { paymentSuccessController } from "./paymentSuccessCotroller";
 import { createSubscriptionCheckoutSessionController } from "./createSubscriptionCheckOutSession";
 import { getAllCoursePaymentsController } from "./getAllCoursePaymentsController";
 import { getAllSubscriptionPaymentController } from "./getAllSubscriptionPayment";
+import { getUserCoursePaymentsController } from "./getUserCoursePaymentsController";
 
 export const controllers = (dependencies:IDepencencies ) => {
     return {
@@ -14,6 +15,7 @@ export const controllers = (dependencies:IDepencencies ) => {
         paymentSuccess: paymentSuccessController(dependencies),
         createSubscriptionCheckout: createSubscriptionCheckoutSessionController(dependencies),
         getAllCoursePayments: getAllCoursePaymentsController(dependencies),
-        getAllSubscriptionPayments: getAllSubscriptionPaymentController(dependencies)
+        getAllSubscriptionPayments: getAllSubscriptionPaymentController(dependencies),
+        getUserCoursePayments: getUserCoursePaymentsController(dependencies)
     }
 }

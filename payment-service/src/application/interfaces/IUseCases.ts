@@ -1,5 +1,5 @@
 import { ISavePaymentUseCase, ISubscriptionPaymentUseCase, 
-    IGetAllCoursePaymentUseCase, IGetAllSubscriptionPaymentUseCase, ISaveChatUseCase } from "../../domain/useCaseInterface";
+    IGetAllCoursePaymentUseCase, IGetAllSubscriptionPaymentUseCase, ISaveChatUseCase,IGetUserCoursePaymentUseCase } from "../../domain/useCaseInterface";
 import { IDepencencies } from "./IDependency";
 
 export interface IUseCases {
@@ -8,4 +8,6 @@ export interface IUseCases {
     getAllCoursePaymentUseCase:( dependencies: IDepencencies ) => IGetAllCoursePaymentUseCase;
     getAllSubscriptionPaymentUseCase: ( dependencies: IDepencencies ) => IGetAllSubscriptionPaymentUseCase;
     saveChatUseCase: ( dependencies: IDepencencies ) => ISaveChatUseCase;
+    getUserCoursePaymentsUseCase: ( dependencies: IDepencencies ) => IGetUserCoursePaymentUseCase
+
 }

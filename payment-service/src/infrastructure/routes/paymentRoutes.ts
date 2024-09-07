@@ -8,7 +8,7 @@ import { verifyAdmin } from "../../_lib/common/middlewares/verifyAdmin";
 
 export const paymentRoutes = (dependencies:IDepencencies) => {
     const { createCheckOutSession,stripeWebhook,paymentSuccess,
-        createSubscriptionCheckout, getAllCoursePayments, getAllSubscriptionPayments } = controllers(dependencies);
+        createSubscriptionCheckout, getAllCoursePayments, getAllSubscriptionPayments, getUserCoursePayments } = controllers(dependencies);
 
     const router  = Router();
 
@@ -28,7 +28,10 @@ export const paymentRoutes = (dependencies:IDepencencies) => {
         .get(jwtMiddleware,verifyAdmin,getAllCoursePayments)
 
     router.route("/admin/subscriptionPayments")
-        .get(jwtMiddleware,verifyAdmin,getAllSubscriptionPayments)
+        .get(jwtMiddleware,getAllSubscriptionPayments)
         
+    router.route("/user/payments")
+        .get(jwtMiddleware,getUserCoursePayments)
+
     return router  
 }

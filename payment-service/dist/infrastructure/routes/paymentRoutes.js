@@ -10,7 +10,7 @@ const express_2 = __importDefault(require("express"));
 const jwtMiddleware_1 = require("../../_lib/common/middlewares/jwtMiddleware");
 const verifyAdmin_1 = require("../../_lib/common/middlewares/verifyAdmin");
 const paymentRoutes = (dependencies) => {
-    const { createCheckOutSession, stripeWebhook, paymentSuccess, createSubscriptionCheckout, getAllCoursePayments, getAllSubscriptionPayments } = (0, controllers_1.controllers)(dependencies);
+    const { createCheckOutSession, stripeWebhook, paymentSuccess, createSubscriptionCheckout, getAllCoursePayments, getAllSubscriptionPayments, getUserCoursePayments } = (0, controllers_1.controllers)(dependencies);
     const router = (0, express_1.Router)();
     router.route("/create-checkout-session")
         .post(jwtMiddleware_1.jwtMiddleware, createCheckOutSession);
@@ -23,7 +23,9 @@ const paymentRoutes = (dependencies) => {
     router.route("/admin/payments")
         .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, getAllCoursePayments);
     router.route("/admin/subscriptionPayments")
-        .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, getAllSubscriptionPayments);
+        .get(jwtMiddleware_1.jwtMiddleware, getAllSubscriptionPayments);
+    router.route("/user/payments")
+        .get(jwtMiddleware_1.jwtMiddleware, getUserCoursePayments);
     return router;
 };
 exports.paymentRoutes = paymentRoutes;
