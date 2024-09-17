@@ -1,5 +1,4 @@
 import { NextFunction, Response, Request } from "express";
-import { dependencies } from "../../_boot/dependencies";
 import { IDependencies } from "../../application/interfaces/IDependency";
 import ErrorResponse from "../../_lib/common/error/ErrorResponse";
 

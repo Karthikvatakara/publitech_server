@@ -99,31 +99,6 @@ const connectSocketIo = (server: Server) => {
             console.log(`Forwarding ICE candidate to ${receiverSocketId} for stream ${streamId}`);
             io.to(receiverSocketId).emit('webrtc-ice-candidate', { candidate, senderSocketId: socket.id });
           });
-        
-        // socket.on("join-live-class", (roomId: string) => {
-        //     socket.join(roomId);
-        //     console.log(`User joined live class room: ${roomId}`);
-        // });
-
-        // socket.on("start-live-stream", (streamData) => {
-        //     console.log("🚀 ~ socket.on ~ streamData:", streamData)
-        //     const { streamId, instructorId } = streamData;
-        //     console.log("🚀 ~ socket.on ~ instructorId:", instructorId)
-        //     console.log("🚀 ~ socket.on ~ streamId:", streamId)
-           
-        //     socket.to(streamId).emit("receive-offer", instructorId);
-        // });
-
-        // socket.on("answer", (answerData) => {
-        //     const { roomId, answer } = answerData;
-        //     socket.to(roomId).emit("receive-answer", answer);
-        // });
-
-        // socket.on("ice-candidate", (candidateData) => {
-        //     const { roomId, candidate } = candidateData;
-        //     socket.to(roomId).emit("receive-ice-candidate", candidate);
-        // });
-
 
         socket.on("disconnect", () => {
             console.log("Socket disconnected");

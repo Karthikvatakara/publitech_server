@@ -27,6 +27,7 @@ const updateCourseStatusController = (dependencies) => {
                 throw new Error("status not updated");
             }
             (0, courseStatusProducer_1.default)(updatedStatus, "payment-service-topic");
+            (0, courseStatusProducer_1.default)(updatedStatus, "notification-service-topic");
             res.status(200).json({ success: true, data: updatedStatus, message: "status updated succesfully" });
         }
         catch (error) {

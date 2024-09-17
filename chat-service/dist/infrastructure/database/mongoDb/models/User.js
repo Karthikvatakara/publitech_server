@@ -77,6 +77,10 @@ const userSchema = new mongoose_1.Schema({
     },
     rejectreason: {
         type: String
+    },
+    fcmTokens: {
+        type: [String],
+        default: [],
     }
 }, {
     timestamps: true

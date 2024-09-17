@@ -11,6 +11,7 @@ export const loginController = (dependencies:IDependencies) => {
 
     return async (req:Request,res:Response,next:NextFunction):Promise<void> => {
         const loginCredentials = req.body;
+        console.log("111111111111111111111login")
         const { email,password } = loginCredentials;
         try{
             const { error,value } =  loginValidation.validate(loginCredentials)

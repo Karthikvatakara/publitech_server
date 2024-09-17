@@ -3,6 +3,7 @@ import { IDependencies } from '../../application/interfaces/IDepencencies';
 import ErrorResponse from '../../_lib/error/ErrorResponse';
 import { signupValidation } from '../../_lib/validation/signupValidation';
 import userCreatedProducer from '../../infrastructure/kafka/producers/userCreatedProducer';
+import userCreatedEmailSendProducer from '../../infrastructure/kafka/producers/userCreatedEmailSendProducer';
 import { hashPassword } from '../../_lib/bcrypt/hashPassword';
 import { generateAccessToken,generateRefreshToken } from '../../_lib/jwt';
 import { string } from 'joi';
@@ -31,7 +32,8 @@ export const signupController = (dependencies:IDependencies) => {
         // if user not present sent otp to user using nodemailer
         if(!userCredentials.otp) {
             try{
-                await userCreatedProducer(email,'notification-service-topic');
+                // await userCreatedProducer(email,'notification-service-topic');
+                await userCreatedEmailSendProducer(email,'notification-service-topic')
                 return res.status(200).json({success:true, message:"otp sent successfully"})
             }catch(error:any){
                 console.log(error,"something went wrong in the otp section");
@@ -85,7 +87,8 @@ export const signupController = (dependencies:IDependencies) => {
                 await userCreatedProducer(userData,"user-service-topic");     
                 await userCreatedProducer(userData,"course-service-topic");
                 await userCreatedProducer(userData,"chat-service-topic");
-                await userCreatedProducer(userData,"payment-service-topic")
+                await userCreatedProducer(userData,"payment-service-topic");
+                await userCreatedProducer(userData,"notification-service-topic");
                 
                 const accessToken = generateAccessToken({
                     _id:String(userData?._id),

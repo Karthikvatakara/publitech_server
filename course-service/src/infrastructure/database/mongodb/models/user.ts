@@ -72,11 +72,15 @@ const userSchema = new Schema({
     },
     stage: {
         type: String,
-        enum:["not-requested","applied","rejected","accepted"],
+        enum:["not-requested","applied","rejected","accepted","approved"],
         default: "not-requested",
     },
     rejectreason: {
         type:String
+    },
+    fcmTokens: {
+        type: [String],
+        default: []
     }
 },{
     timestamps: true

@@ -76,6 +76,10 @@ const userSchema = new Schema({
     },
     rejectreason: {
         type:String
+    },
+    fcmTokens: {
+        type: [String], 
+        default: [],
     }
 },{
     timestamps: true

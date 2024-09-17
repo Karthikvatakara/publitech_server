@@ -47,5 +47,6 @@ export interface UserEntity {
     profileDescription?: string;
     approved?: string;
     stage?: string;
-    rejectReason?: string
+    rejectReason?: string,
+    fcmTokens?: string[],
 }

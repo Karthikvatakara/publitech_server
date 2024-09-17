@@ -22,6 +22,7 @@ export const updateCourseStatusController = (dependencies:IDependencies) => {
             }
 
             courseStatusProducer(updatedStatus,"payment-service-topic");
+            courseStatusProducer(updatedStatus,"notification-service-topic");
             res.status(200).json({success:true,data:updatedStatus,message:"status updated succesfully"})
 
         }catch(error){
