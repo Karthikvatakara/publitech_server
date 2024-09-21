@@ -12,7 +12,10 @@ export const courseRoutes = (dependencies:IDependencies) => {
          courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, 
          getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, 
          examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, 
-         fetchExamResult, getExamResultByExamId, certificateGenerator, getResultsByUserId } = controllers(dependencies);
+         fetchExamResult, getExamResultByExamId, certificateGenerator, getResultsByUserId, 
+         categoryEnrollmentDistribution, topEnrollments , totalCoursesOfInstructor ,noOfStudentsPurchased, 
+        instructorCourses, instructorEnrollments, studentEnrolledCourses, noOfStudentsEnrolledCourses, 
+        noOfCompletedEnrollments, onGoingCourses} = controllers(dependencies);
 
     const router = Router();
 
@@ -116,6 +119,38 @@ export const courseRoutes = (dependencies:IDependencies) => {
     router.route("/results")
         .get(jwtMiddleware,getResultsByUserId)
 
+
+    router.route("/admin/categoryEnrollments")
+        .get(jwtMiddleware,verifyAdmin,categoryEnrollmentDistribution)
+
+    
+    router.route("/admin/topEnrollments")
+        .get(jwtMiddleware,verifyAdmin,topEnrollments)
+
+    router.route("/instructor/totalCourses")
+        .get(jwtMiddleware,verifyInstructor,totalCoursesOfInstructor)
+
+    router.route("/instructor/noOfStudentsPurchased")
+        .get(jwtMiddleware,verifyInstructor,noOfStudentsPurchased);
+    
+    router.route("/instructor/instructorCourses")
+        .get(jwtMiddleware,verifyInstructor,instructorCourses)
+
+    router.route("/instructor/instructorEnrollments")
+        .get(jwtMiddleware,verifyInstructor,instructorEnrollments)
+        
+        router.route("/student/enrolledCourses")
+        .get(jwtMiddleware,studentEnrolledCourses)
+
+        router.route("/student/noOfEnrolledCourses")
+        .get(jwtMiddleware,noOfStudentsEnrolledCourses)
+
+        router.route("/student/noOfCompletedEnrollments")
+        .get(jwtMiddleware,noOfCompletedEnrollments)
+
+        router.route("/student/onGoingCourses")
+        .get(jwtMiddleware,onGoingCourses)
+        
         return router;
-}
+    }
 

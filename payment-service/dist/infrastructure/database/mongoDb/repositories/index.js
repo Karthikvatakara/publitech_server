@@ -21,3 +21,6 @@ __exportStar(require("./getAllSubscriptionPayment"), exports);
 __exportStar(require("./editUserProfileConsumer"), exports);
 __exportStar(require("./saveChat"), exports);
 __exportStar(require("./getUserCoursePayments"), exports);
+__exportStar(require("./getTotalPayments"), exports);
+__exportStar(require("./getTotalRevenue"), exports);
+__exportStar(require("./getTotalPaymentsForInstructor"), exports);

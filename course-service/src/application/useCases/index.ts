@@ -32,4 +32,13 @@ export * from "./fetchExamResultByIdUseCase";
 export * from "./getExamResultByExamIdUseCase";
 export * from "./getResultsByUserIdUseCase";
 export * from "./checkResultOfAssessmentAndUserIdUseCase";
-export * from "./updateResultUseCase"
+export * from "./updateResultUseCase";
+export * from "./cateforyEnrollmentDistributionUseCase";
+export * from "./topEnrollmentsUseCase";
+export * from "./totalCoursesofInstructorUseCase";
+export * from "./noOfStudentsPurchasedUseCase";
+export * from "./instructorCoursesUseCase";
+export * from "./instructotEnrollmentsUseCase"
+export * from "./studentEnrolledCoursesUseCase";
+export * from "./noOfStudentEnrolledCoursesUseCase";
+export * from "./noOfCompletedEnrollmentsUseCase";

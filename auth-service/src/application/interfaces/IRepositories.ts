@@ -9,5 +9,7 @@ export interface IRespositories {
     login:(data:loginEntity) => Promise<UserEntity | null>;
     applyToTeach:(data:applyToTeachEntity) => Promise<UserEntity | null>;
     updatePassword:(email:string,password:string) => Promise<UserEntity | null>;
+    instructorCount:() => Promise<number | null>
+    studentsCount:() => Promise<number | null>
     // editUserProfile:(data:UserEntity) => Promise< UserEntity | null>;
 }   

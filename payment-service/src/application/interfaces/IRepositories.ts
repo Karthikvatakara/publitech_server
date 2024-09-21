@@ -9,4 +9,7 @@ export interface IRespositories {
     getAllSubscriptionPayment:( page: number, limit: number, status: string, search: string) => Promise<{subscriptions: subscriptionPaymentEntity[], totalPages: number, totalCount: number}>
     saveChat:( data: { userId: string, instructorRef: string }) => Promise<chatEntity | null>
     getUserCoursePayments:( page: number, limit: number, status: string, search: string, userId: string) => Promise<{ payments: PaymentEntity[],totalPages: number, totalCount: number}>
+    getTotalPayments:() => Promise<number|null>
+    getTotalRevenue:() => Promise<{year: number, month: number, totalRevenue: number}[] | null>
+    getTotalPaymentsForInstructor:( instructorId: string ) =>  Promise<number |null>
 }

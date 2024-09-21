@@ -32,6 +32,16 @@ import { getExamResultByExamId } from "../../infrastructure/database/mongodb/rep
 import { getExamResultByExamIdController } from "./getExamResultByExamIdController";
 import { certificateGeneratorController } from "./certificateGenerator";
 import { getResultsByUserIdController } from "./getResultsByUserIdController";
+import { categoryEnrollmentDistributionController } from "./categoryEnrollmentDistributionController";
+import { topEnrollmentsController } from "./topEnrollmentsController";
+import { totalCoursesOfInstructorController } from "./totalCoursesOfInstructorController";
+import { noOfStudentsPurchasedController } from "./noOfStudentsPurchasedController";
+import { instructorCoursesController } from "./instructorCoursesController";
+import { instructorEnrollmentController } from "./instructorEnrollmentController";
+import { studentEnrolledCoursesController } from "./studentEnrolledCourseController";
+import { noOfStudentEnrolledCoursesController } from "./noOfStudentEnrolledCoursesController";
+import { noOfCompletedEnrollmentsController } from "./noOfCompletedEnrollmentsController";
+import { onGoingCoursesController } from "./onGoingCoursesController";
 
 export const controllers = (dependencies:IDependencies) => {
     return {
@@ -66,6 +76,16 @@ export const controllers = (dependencies:IDependencies) => {
         fetchExamResult: fetchExamResultByIdController(dependencies),
         getExamResultByExamId: getExamResultByExamIdController(dependencies),
         certificateGenerator:certificateGeneratorController(dependencies),
-        getResultsByUserId: getResultsByUserIdController(dependencies)
+        getResultsByUserId: getResultsByUserIdController(dependencies),
+        categoryEnrollmentDistribution: categoryEnrollmentDistributionController(dependencies),
+        topEnrollments: topEnrollmentsController(dependencies),
+        totalCoursesOfInstructor: totalCoursesOfInstructorController(dependencies),
+        noOfStudentsPurchased: noOfStudentsPurchasedController(dependencies),
+        instructorCourses: instructorCoursesController(dependencies),
+        instructorEnrollments: instructorEnrollmentController(dependencies),
+        studentEnrolledCourses: studentEnrolledCoursesController(dependencies),
+        noOfStudentsEnrolledCourses: noOfStudentEnrolledCoursesController(dependencies),
+        noOfCompletedEnrollments: noOfCompletedEnrollmentsController(dependencies),
+        onGoingCourses:onGoingCoursesController(dependencies)
     }
 }

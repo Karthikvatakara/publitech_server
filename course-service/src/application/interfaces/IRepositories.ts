@@ -38,4 +38,13 @@ export interface IRespositories {
     getResultsByUserId:( userId: string ) => Promise<resultEntity[] | null>
     checkResultOfAssessmentAndUserId: ( assessmentRef: string, userRef: string ) => Promise<resultEntity | null>
     updateResult: ( resultId: string, data: resultEntity) => Promise<resultEntity | null>
+    categoryEnrollmentDistribution:() => Promise<{ category: string; percentage: number }[]> 
+    topEnrollments:() => Promise<CourseEntity[] | null>
+    totalCoursesOfInstructor:(userId: string) => Promise<number | null>
+    noOfStudentsPurchased:(instructorId: string ) => Promise<number | null>
+    instructorCourses: ( instructorId: string ) => Promise<CourseEntity[] | null>
+    instructorEnrollments:(instructorId: string) => Promise<EnrollmentEntity[] | any>
+    studentEnrolledCourses:( userId: string ) => Promise<EnrollmentEntity[] | null>
+    noOfStudentEnrolledCourses:( userId: string ) => Promise<number | null>
+    noOfCompletedEnrollments: ( userId: string ) => Promise<number | null>
 }

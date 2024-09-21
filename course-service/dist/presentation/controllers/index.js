@@ -33,6 +33,16 @@ const fetchExamResultByIdController_1 = require("./fetchExamResultByIdController
 const getExamResultByExamIdController_1 = require("./getExamResultByExamIdController");
 const certificateGenerator_1 = require("./certificateGenerator");
 const getResultsByUserIdController_1 = require("./getResultsByUserIdController");
+const categoryEnrollmentDistributionController_1 = require("./categoryEnrollmentDistributionController");
+const topEnrollmentsController_1 = require("./topEnrollmentsController");
+const totalCoursesOfInstructorController_1 = require("./totalCoursesOfInstructorController");
+const noOfStudentsPurchasedController_1 = require("./noOfStudentsPurchasedController");
+const instructorCoursesController_1 = require("./instructorCoursesController");
+const instructorEnrollmentController_1 = require("./instructorEnrollmentController");
+const studentEnrolledCourseController_1 = require("./studentEnrolledCourseController");
+const noOfStudentEnrolledCoursesController_1 = require("./noOfStudentEnrolledCoursesController");
+const noOfCompletedEnrollmentsController_1 = require("./noOfCompletedEnrollmentsController");
+const onGoingCoursesController_1 = require("./onGoingCoursesController");
 const controllers = (dependencies) => {
     return {
         createCategory: (0, createCategoryController_1.createCategoryController)(dependencies),
@@ -66,7 +76,17 @@ const controllers = (dependencies) => {
         fetchExamResult: (0, fetchExamResultByIdController_1.fetchExamResultByIdController)(dependencies),
         getExamResultByExamId: (0, getExamResultByExamIdController_1.getExamResultByExamIdController)(dependencies),
         certificateGenerator: (0, certificateGenerator_1.certificateGeneratorController)(dependencies),
-        getResultsByUserId: (0, getResultsByUserIdController_1.getResultsByUserIdController)(dependencies)
+        getResultsByUserId: (0, getResultsByUserIdController_1.getResultsByUserIdController)(dependencies),
+        categoryEnrollmentDistribution: (0, categoryEnrollmentDistributionController_1.categoryEnrollmentDistributionController)(dependencies),
+        topEnrollments: (0, topEnrollmentsController_1.topEnrollmentsController)(dependencies),
+        totalCoursesOfInstructor: (0, totalCoursesOfInstructorController_1.totalCoursesOfInstructorController)(dependencies),
+        noOfStudentsPurchased: (0, noOfStudentsPurchasedController_1.noOfStudentsPurchasedController)(dependencies),
+        instructorCourses: (0, instructorCoursesController_1.instructorCoursesController)(dependencies),
+        instructorEnrollments: (0, instructorEnrollmentController_1.instructorEnrollmentController)(dependencies),
+        studentEnrolledCourses: (0, studentEnrolledCourseController_1.studentEnrolledCoursesController)(dependencies),
+        noOfStudentsEnrolledCourses: (0, noOfStudentEnrolledCoursesController_1.noOfStudentEnrolledCoursesController)(dependencies),
+        noOfCompletedEnrollments: (0, noOfCompletedEnrollmentsController_1.noOfCompletedEnrollmentsController)(dependencies),
+        onGoingCourses: (0, onGoingCoursesController_1.onGoingCoursesController)(dependencies)
     };
 };
 exports.controllers = controllers;

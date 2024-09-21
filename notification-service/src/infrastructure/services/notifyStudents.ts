@@ -1,16 +1,17 @@
 import { getStudentsTokens } from "../database/repositories/getStudentsTokens";
 import { firebase } from "../../utils/adminFirebase";
 
-export const notifyStudents = async (title: string, body: string) => {
+export const notifyStudents = async (title: string, body: string, iconUrl: string) => {
   try {
+    console.log("🚀 ~ notifyStudents ~ iconUrl:", iconUrl)
     const studentTokens = await getStudentsTokens();
     console.log("🚀 ~ notifyStudents ~ studentTokens:", studentTokens);
 
     // Filter out undefined values and ensure valid tokens
     const validTokens: string[] = studentTokens
-      .flat() // Flattens nested arrays, if any
+      .flat() // Flattens nested arrays, if anya
       .filter((token): token is string => token !== undefined);
-      
+
     console.log("🚀 ~ notifyStudents ~ validTokens:", validTokens)
 
     // Send notifications to each token individually
@@ -20,6 +21,7 @@ export const notifyStudents = async (title: string, body: string) => {
         notification: {
           title,
           body,
+          image: iconUrl,
         },
       };
 

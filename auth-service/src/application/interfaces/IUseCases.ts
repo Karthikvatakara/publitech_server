@@ -1,4 +1,6 @@
-import { ISignupUserUseCase,IFindByEmailUseCase,IverifyOtpUseCase,IFindUserByIdUseCase,ILogininterfaceUseCase,IApplyToTeachUseCase, IUpdatePasswordUseCase } from "../../domain/useCaseInterface"
+import { ISignupUserUseCase,IFindByEmailUseCase,IverifyOtpUseCase,IFindUserByIdUseCase,
+    ILogininterfaceUseCase,IApplyToTeachUseCase, IUpdatePasswordUseCase, 
+    IInstructorCountUseCase, IStudentUseCaseInterface } from "../../domain/useCaseInterface"
 import { IDependencies } from "./IDepencencies";
 
 export interface IUseCases {
@@ -9,4 +11,6 @@ export interface IUseCases {
     loginUseCase:(dependencies:IDependencies) => ILogininterfaceUseCase;
     applyToTeahcUseCase:(dependecies:IDependencies) => IApplyToTeachUseCase
     updatePasswordUseCase:(dependencies:IDependencies) => IUpdatePasswordUseCase
+    instructorCountUseCase:(dependencies:IDependencies) => IInstructorCountUseCase
+    studentsCountUseCase:(dependencies: IDependencies ) => IStudentUseCaseInterface
 }

@@ -5,3 +5,5 @@ export * from "./findUserByIdUseCase"
 export * from "./loginUseCase"
 export * from "./applyToTeachUseUseCase"
 export * from "./updatePasswordUseCase";
+export * from "./instructorCountUseCase";
+export * from "./studentsCountUseCase";

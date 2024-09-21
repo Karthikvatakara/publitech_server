@@ -40,7 +40,7 @@ const enrollmentSchema = new Schema ({
     progress: {
         completedLessons: [ Schema.Types.ObjectId ],
         completedAssessments: [ Schema.Types.ObjectId ],
-        currentLesson: Schema.Types.ObjectId,
+        currentLesson: Schema.Types.ObjectId,  
         lessonProgress: [LessonProgressSchema]
     }   
 })

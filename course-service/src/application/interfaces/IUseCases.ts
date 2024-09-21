@@ -8,7 +8,10 @@ IGetAllCoursesExamCreationUseCase, ICreateExamUseCase, IExamsOfInstructorUseCase
 IIsExamExistByExamIdUseCase, IUpdateExamUseCase, ICreateExamResultUseCase, IFetchExamResultByIdUseCase,
 IGetExamResultByExamIdUseCase,
 IGetResultsByUserIdUseCase , ICheckResultOfAssessmentAndUserIdUseCase,
-IUpdateResultUseCase} from "../../domain/useCaseInterface";
+IUpdateResultUseCase, ICategoryEnrollmentDistributionUseCase, ITopEnrollmentsUseCase, ITotalCoursesOfInstructorUseCase ,
+INoOfStudentsPurchasedUseCase, IInstructorCoursesUseCase ,IInstructorEnrollmentsUseCase, 
+IStudentEnrolledCoursesUseCase, INoOfStudentEnrolledCoursesUseCase, 
+INoOfCompletedEnrollmentsUseCase} from "../../domain/useCaseInterface";
 import { IDependencies } from "./IDependency";  
 
 export interface IUseCases {
@@ -47,4 +50,13 @@ export interface IUseCases {
     getResultsByUserIdUseCase:(dependencies: IDependencies) => IGetResultsByUserIdUseCase
     checkResultOfAssessmentAndUserIdUseCase: ( dependencies: IDependencies ) => ICheckResultOfAssessmentAndUserIdUseCase
     updateResultUseCase: ( dependencies: IDependencies ) => IUpdateResultUseCase  
+    categoryEnrollmentDistributionUseCase:( dependencies: IDependencies )=> ICategoryEnrollmentDistributionUseCase
+    topEnrollmentsUseCase: ( dependencies: IDependencies ) => ITopEnrollmentsUseCase
+    totalCoursesOfInstructorUseCase: ( dependencies: IDependencies ) => ITotalCoursesOfInstructorUseCase
+    noOfStudentsPurchasedUseCase:( dependenices: IDependencies ) => INoOfStudentsPurchasedUseCase
+    instructorCoursesUseCase:( dependencies: IDependencies ) => IInstructorCoursesUseCase  
+    instructorEnrollmentsUseCase:( dependencies: IDependencies) => IInstructorEnrollmentsUseCase
+    studentEnrolledCoursesUseCase:( dependencies: IDependencies ) => IStudentEnrolledCoursesUseCase
+    noOfStudentEnrolledCoursesUseCase: ( dependencies: IDependencies) => INoOfStudentEnrolledCoursesUseCase
+    noOfCompletedEnrollmentsUseCase: ( dependencies: IDependencies ) => INoOfCompletedEnrollmentsUseCase
 }

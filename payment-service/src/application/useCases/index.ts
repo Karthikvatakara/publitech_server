@@ -4,3 +4,6 @@ export * from "./getAllCoursePaymentUseCase";
 export * from "./getAllSubscriptionPaymentUseCase";
 export * from "./saveChatUseCase";
 export * from "./getUserCoursePaymentsUseCase";
+export * from "./getTotalPaymentsUseCase";
+export * from "./getTotalRevenueUseCase";
+export * from "./getTotalPaymentsForInstructorUseCase";

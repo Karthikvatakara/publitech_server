@@ -7,7 +7,7 @@ const jwtMiddleware_1 = require("../../_lib/common/middlewares/jwtMiddleware");
 const verifyAdmin_1 = require("../../_lib/common/middlewares/verifyAdmin");
 const verifyInstructor_1 = require("../../_lib/common/middlewares/verifyInstructor");
 const courseRoutes = (dependencies) => {
-    const { createCategory, getAllCategory, updateCategory, blockCategory, getAllAvailabeCategory, createCourse, getAllCourse, getSingleCourse, updateCourse, getCompleteCourses, updateStatus, getCoursesToUser, createEnrollment, isEnrollmentExist, getEnrollmentByUserId, getAllCourseOfInstructor, courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, fetchExamResult, getExamResultByExamId, certificateGenerator, getResultsByUserId } = (0, index_1.controllers)(dependencies);
+    const { createCategory, getAllCategory, updateCategory, blockCategory, getAllAvailabeCategory, createCourse, getAllCourse, getSingleCourse, updateCourse, getCompleteCourses, updateStatus, getCoursesToUser, createEnrollment, isEnrollmentExist, getEnrollmentByUserId, getAllCourseOfInstructor, courseStatusChangeByInstructor, usersForInstructorChat, SubmitlessonProgress, getLessonProgress, getEnrollmentByCourseId, getAllCoursesOfExamCreation, createExam, examsOfInstructor, isExamExist, isExamExistByExamId, updateExam, createExamResult, fetchExamResult, getExamResultByExamId, certificateGenerator, getResultsByUserId, categoryEnrollmentDistribution, topEnrollments, totalCoursesOfInstructor, noOfStudentsPurchased, instructorCourses, instructorEnrollments, studentEnrolledCourses, noOfStudentsEnrolledCourses, noOfCompletedEnrollments, onGoingCourses } = (0, index_1.controllers)(dependencies);
     const router = (0, express_1.Router)();
     router.route("/admin/category")
         .post(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, createCategory)
@@ -75,6 +75,26 @@ const courseRoutes = (dependencies) => {
         .post(jwtMiddleware_1.jwtMiddleware, certificateGenerator);
     router.route("/results")
         .get(jwtMiddleware_1.jwtMiddleware, getResultsByUserId);
+    router.route("/admin/categoryEnrollments")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, categoryEnrollmentDistribution);
+    router.route("/admin/topEnrollments")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyAdmin_1.verifyAdmin, topEnrollments);
+    router.route("/instructor/totalCourses")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyInstructor_1.verifyInstructor, totalCoursesOfInstructor);
+    router.route("/instructor/noOfStudentsPurchased")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyInstructor_1.verifyInstructor, noOfStudentsPurchased);
+    router.route("/instructor/instructorCourses")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyInstructor_1.verifyInstructor, instructorCourses);
+    router.route("/instructor/instructorEnrollments")
+        .get(jwtMiddleware_1.jwtMiddleware, verifyInstructor_1.verifyInstructor, instructorEnrollments);
+    router.route("/student/enrolledCourses")
+        .get(jwtMiddleware_1.jwtMiddleware, studentEnrolledCourses);
+    router.route("/student/noOfEnrolledCourses")
+        .get(jwtMiddleware_1.jwtMiddleware, noOfStudentsEnrolledCourses);
+    router.route("/student/noOfCompletedEnrollments")
+        .get(jwtMiddleware_1.jwtMiddleware, noOfCompletedEnrollments);
+    router.route("/student/onGoingCourses")
+        .get(jwtMiddleware_1.jwtMiddleware, onGoingCourses);
     return router;
 };
 exports.courseRoutes = courseRoutes;

@@ -41,3 +41,12 @@ export * from "./getExamResultByExamId"
 export * from "./getResultsByUserId";
 export * from "./checkResultOfAssessmentAndUserId";
 export * from "./updateResult";
+export * from "./categoryEnrollmentDistribution";
+export * from "./topEnrollments";
+export * from "./totalCoursesOfInstructor";
+export * from "./noOfStudentsPurchased";
+export * from "./instructorCourses";
+export * from "./instructorEnrollments";
+export * from "./studentEnrolledCourses";
+export * from "./noOfStudentEnrolledCourses";
+export * from "./noOfCompletedEnrollments"

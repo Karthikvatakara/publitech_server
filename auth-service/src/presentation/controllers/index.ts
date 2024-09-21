@@ -8,6 +8,8 @@ import { applyToTeachController } from "./applyToTeach";
 import { forgotPasswordController } from "./forgotPassword";
 import { updatePsswordController } from "./updatePassword"
 import { googleAuthController } from "./googleAuth";
+import { instructorCountController } from "./instructorCountController";
+import { studentsCountController } from "./studentsCountController";
 
 export const controllers = (dependencies:IDependencies) => {
     return {
@@ -18,7 +20,9 @@ export const controllers = (dependencies:IDependencies) => {
         applyToTeach:applyToTeachController(dependencies),
         forgotPassword:forgotPasswordController(dependencies),
         updatePassword:updatePsswordController(dependencies),
-        googleAuth:googleAuthController(dependencies)
+        googleAuth:googleAuthController(dependencies),
+        instructorCount: instructorCountController(dependencies),
+        studentsCount: studentsCountController(dependencies),
     }
 }
 

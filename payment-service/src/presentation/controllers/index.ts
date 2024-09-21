@@ -7,6 +7,9 @@ import { createSubscriptionCheckoutSessionController } from "./createSubscriptio
 import { getAllCoursePaymentsController } from "./getAllCoursePaymentsController";
 import { getAllSubscriptionPaymentController } from "./getAllSubscriptionPayment";
 import { getUserCoursePaymentsController } from "./getUserCoursePaymentsController";
+import {getTotalPaymentsController} from "./getTotalPaymentsController"
+import { getTotalRevenueController } from "./getTotalRevenueController";
+import { getTotalPaymentsForInstructorController } from "./getTotalPaymentsForInstructorController";
 
 export const controllers = (dependencies:IDepencencies ) => {
     return {
@@ -16,6 +19,9 @@ export const controllers = (dependencies:IDepencencies ) => {
         createSubscriptionCheckout: createSubscriptionCheckoutSessionController(dependencies),
         getAllCoursePayments: getAllCoursePaymentsController(dependencies),
         getAllSubscriptionPayments: getAllSubscriptionPaymentController(dependencies),
-        getUserCoursePayments: getUserCoursePaymentsController(dependencies)
+        getUserCoursePayments: getUserCoursePaymentsController(dependencies),
+        getTotalPayments: getTotalPaymentsController(dependencies),
+        getTotalRevenue: getTotalRevenueController(dependencies),
+        getTotalPaymentsForInstructor: getTotalPaymentsForInstructorController(dependencies)
     }
 }
