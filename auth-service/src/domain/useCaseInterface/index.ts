@@ -4,3 +4,7 @@ export * from "./IVerifyOtpUseCaseInterface"
 export * from "./IFindUserByIdUseCase"
 export * from "./ILoginUseCaseInterface"
 export * from './IApplyToTeachUseCase'
+export * from "./IUpdatePasswordUseCase"
+export * from "./IInstructorCountUseCase"
+export * from "./IStudentsCountUseCaseInterface"
+export * from "./IFindInstructorByIdUseCase";

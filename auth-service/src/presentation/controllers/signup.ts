@@ -3,6 +3,7 @@ import { IDependencies } from '../../application/interfaces/IDepencencies';
 import ErrorResponse from '../../_lib/error/ErrorResponse';
 import { signupValidation } from '../../_lib/validation/signupValidation';
 import userCreatedProducer from '../../infrastructure/kafka/producers/userCreatedProducer';
+import userCreatedEmailSendProducer from '../../infrastructure/kafka/producers/userCreatedEmailSendProducer';
 import { hashPassword } from '../../_lib/bcrypt/hashPassword';
 import { generateAccessToken,generateRefreshToken } from '../../_lib/jwt';
 import { string } from 'joi';
@@ -24,14 +25,15 @@ export const signupController = (dependencies:IDependencies) => {
                 }
             }catch(error:any) {
                 console.log("something went wrong");
-                next(error);
+                throw new Error(error || "something went wrong")
             }
         }
 
         // if user not present sent otp to user using nodemailer
         if(!userCredentials.otp) {
             try{
-                await userCreatedProducer(email,'notification-service-topic');
+                // await userCreatedProducer(email,'notification-service-topic');
+                await userCreatedEmailSendProducer(email,'notification-service-topic')
                 return res.status(200).json({success:true, message:"otp sent successfully"})
             }catch(error:any){
                 console.log(error,"something went wrong in the otp section");
@@ -46,14 +48,18 @@ export const signupController = (dependencies:IDependencies) => {
                 const isVerified = await verifyOtpUseCase(dependencies).execute(email,otp);
              
                 if(!isVerified){
-                    return res.status(401).json({user:userCredentials,success:false,message:"OTP is invalid! Please try again"})
+                    throw new Error("otp is invalid")
+                    // return res.status(401).json({user:userCredentials,success:false,message:"OTP is invalid! Please try again"})
                 }
             }catch(error:any) {
                 console.error(error,"something went wrong in verify otp signup controller function");
-                return res.json({
-                    success: false,
-                    message: "otp invalid"
-                })
+                return next(ErrorResponse.notFound(error?.message))
+                // throw new Error(error?.message)
+                // return res.json({
+                //     success: false,
+                //     message: "otp invalid"
+                // })
+            
             }
         }
 
@@ -77,8 +83,12 @@ export const signupController = (dependencies:IDependencies) => {
                     })
                 }
 
-                // sending data to user-service 
-                // await userCreatedProducer(userData,"USER_SERVICE_TOPIC");     
+                // sending data to various services
+                await userCreatedProducer(userData,"user-service-topic");     
+                await userCreatedProducer(userData,"course-service-topic");
+                await userCreatedProducer(userData,"chat-service-topic");
+                await userCreatedProducer(userData,"payment-service-topic");
+                await userCreatedProducer(userData,"notification-service-topic");
                 
                 const accessToken = generateAccessToken({
                     _id:String(userData?._id),
@@ -100,8 +110,8 @@ export const signupController = (dependencies:IDependencies) => {
                 res.status(200).json({success:true,data:userData,message:"user created"});
             }catch(error:any){
                 console.error(error,"error in sign up controller");
+                next(error)
             }
         }
-
     }
 }

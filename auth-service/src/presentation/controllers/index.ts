@@ -5,7 +5,12 @@ import { getUserController } from "./getUser"
 import { loginController } from "./login";
 import { logoutController } from "./logout";
 import { applyToTeachController } from "./applyToTeach";
-import { applyToTeach } from "../../infrastructure/database/mongoDb/repositories";
+import { forgotPasswordController } from "./forgotPassword";
+import { updatePsswordController } from "./updatePassword"
+import { googleAuthController } from "./googleAuth";
+import { instructorCountController } from "./instructorCountController";
+import { studentsCountController } from "./studentsCountController";
+import { findInstructorByIdController } from "./IFindInstructorByIdController";
 
 export const controllers = (dependencies:IDependencies) => {
     return {
@@ -13,7 +18,13 @@ export const controllers = (dependencies:IDependencies) => {
         getUser:getUserController(dependencies),
         login:loginController(dependencies),
         logout:logoutController(dependencies),
-        applyToTeach:applyToTeachController(dependencies)
+        applyToTeach:applyToTeachController(dependencies),
+        forgotPassword:forgotPasswordController(dependencies),
+        updatePassword:updatePsswordController(dependencies),
+        googleAuth:googleAuthController(dependencies),
+        instructorCount: instructorCountController(dependencies),
+        studentsCount: studentsCountController(dependencies),
+        findInstructorById: findInstructorByIdController(dependencies)
     }
 }
 

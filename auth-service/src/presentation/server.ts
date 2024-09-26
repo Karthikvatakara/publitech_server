@@ -6,7 +6,7 @@ import { authRoutes } from '../infrastructure/routes/authRoutes';
 import { dependencies } from '../_boot/dependencies';
 import mongoSanitize from "express-mongo-sanitize"
 import cors from 'cors'
-dotenv.config()
+dotenv.config()  
 
 const app:Application = express();
 const PORT: number = Number(process.env.PORT) || 4001;
@@ -20,7 +20,7 @@ app.use(cookieParser());
 const allowedOrigins = "http://localhost:5173"
 const corsOptions = {
     origin: allowedOrigins,
-    methods: ["GET,HEAD,PUT,POST,POST,DELETE"],
+    methods: ["GET,HEAD,PUT,POST,DELETE"],
     credentials: true,
 }
 
@@ -28,6 +28,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(mongoSanitize());
+
 app.use('/',authRoutes(dependencies));
 
 app.use("*",(req:Request,res:Response) => {

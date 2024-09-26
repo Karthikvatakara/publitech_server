@@ -3,6 +3,7 @@ import { Request,Response,NextFunction } from "express";
 import { applyToTeachValidation } from "../../_lib/validation/applyToTeachValidation";
 import ErrorResponse from "../../_lib/error/ErrorResponse";
 import { UserEntity } from "../../domain/entities/userEntity";
+import applyToTeachProducer from "../../infrastructure/kafka/producers/applyToTeachProducer";
 
 export const applyToTeachController = (dependencies:IDependencies) => {
     const {useCases:{applyToTeahcUseCase,findByEmailUseCase}} = dependencies
@@ -41,9 +42,13 @@ export const applyToTeachController = (dependencies:IDependencies) => {
                 res.status(500).json({success:false,message:"application submission failed"})
             }
 
+            //sending details to user service
+            applyToTeachProducer(value,"user-service-topic")
+            applyToTeachProducer(value,"course-service-topic")
+
             res.status(200).json({success:true,data:applicationData, message:"application submitted successfullly"})
-        }catch(error:any){
-            console.error(error,"error in the applytoteach controller")
+        }catch(error){
+            // console.error(error,"error in the applytoteach controller")
             next(error);
         }
     }

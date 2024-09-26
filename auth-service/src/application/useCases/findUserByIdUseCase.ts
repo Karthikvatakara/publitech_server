@@ -1,3 +1,4 @@
+import { threadId } from "worker_threads";
 import { IDependencies } from "../interfaces/IDepencencies";
 
 
@@ -10,7 +11,7 @@ export const findUserByIdUseCase = (dependencies:IDependencies) => {
               return await findUserById(id)
             }catch(error:any){
                 console.error(error,"error in the usecase")
-                return false
+                throw new Error(error?.message || "error in finduserbyidusecase")
             }
         }
     }
