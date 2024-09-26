@@ -10,10 +10,16 @@ export const saveFcmToken = async( token: string, userId: string ): Promise<User
             throw new Error("user not found")
         }
 
-        if(!user.fcmTokens?.includes(token)){
-            user.fcmTokens?.push(token);
-            await user.save();
-        }
+        user.fcmTokens = user.fcmTokens?.filter(existingToken => existingToken !== token) || [];
+
+
+        // if(!user.fcmTokens?.includes(token)){
+        //     user.fcmTokens?.push(token);
+        //     await user.save();
+        // }
+        user.fcmTokens.push(token);
+        await user.save();
+
 
         return user;
     }catch(error){

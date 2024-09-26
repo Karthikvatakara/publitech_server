@@ -61,22 +61,23 @@ const connectSocketIo = (server: Server) => {
         
 
         socket.on('start-live-stream', ({ streamId, instructorId }) => {
-            console.log(`Starting live stream: ${streamId} by instructor: ${instructorId}`);
-            activeLiveStreams.set(streamId, { streamId, instructorId });
-            io.emit('new-live-stream', { streamId, instructorId });
-          });
-        
-          socket.on("get-current-live-streams", () => {
-            const currentStreams = Array.from(activeLiveStreams.values());
-            console.log("Sending current live streams:", currentStreams);
-            socket.emit('current-live-streams', currentStreams);
-          });
+          console.log(`Starting live stream: ${streamId} by instructor: ${instructorId}`);
+          const timestamp = Date.now();
+          activeLiveStreams.set(streamId, { streamId, instructorId, timestamp });
+          io.emit('new-live-stream', { streamId, instructorId, timestamp });
+      });
+      
+      socket.on("get-current-live-streams", () => {
+          const currentStreams = Array.from(activeLiveStreams.values());
+          console.log("Sending current live streams:", currentStreams);
+          socket.emit('current-live-streams', currentStreams);
+      });
 
-          socket.on('end-live-stream', ({ streamId }) => {
-            console.log("🚀 ~ socket.on ~ streamId:eeeeeeeeeeeeeeeeeeeend", streamId)
-            activeLiveStreams.delete(streamId);
-            io.emit('live-stream-ended', { streamId });
-          });
+      socket.on('end-live-stream', ({ streamId }) => {
+          console.log("🚀 ~ socket.on ~ streamId:eeeeeeeeeeeeeeeeeeeend", streamId)
+          activeLiveStreams.delete(streamId);
+          io.emit('live-stream-ended', { streamId });
+      });
         
           socket.on('join-live-stream', ({ streamId, studentId }) => {
             console.log(`Student ${studentId} joining stream ${streamId}`);

@@ -7,3 +7,4 @@ export * from "./applyToTeachUseUseCase"
 export * from "./updatePasswordUseCase";
 export * from "./instructorCountUseCase";
 export * from "./studentsCountUseCase";
+export * from "./findInstructorByIdUseCase";

@@ -11,5 +11,6 @@ export interface IRespositories {
     updatePassword:(email:string,password:string) => Promise<UserEntity | null>;
     instructorCount:() => Promise<number | null>
     studentsCount:() => Promise<number | null>
+    findInstructorById:(instructorId: string) => Promise<UserEntity | null>
     // editUserProfile:(data:UserEntity) => Promise< UserEntity | null>;
 }   

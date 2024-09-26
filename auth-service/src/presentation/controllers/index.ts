@@ -10,6 +10,7 @@ import { updatePsswordController } from "./updatePassword"
 import { googleAuthController } from "./googleAuth";
 import { instructorCountController } from "./instructorCountController";
 import { studentsCountController } from "./studentsCountController";
+import { findInstructorByIdController } from "./IFindInstructorByIdController";
 
 export const controllers = (dependencies:IDependencies) => {
     return {
@@ -23,6 +24,7 @@ export const controllers = (dependencies:IDependencies) => {
         googleAuth:googleAuthController(dependencies),
         instructorCount: instructorCountController(dependencies),
         studentsCount: studentsCountController(dependencies),
+        findInstructorById: findInstructorByIdController(dependencies)
     }
 }
 

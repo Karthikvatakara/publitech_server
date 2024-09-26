@@ -45,8 +45,9 @@ const connectSocketIo = (server) => {
         });
         socket.on('start-live-stream', ({ streamId, instructorId }) => {
             console.log(`Starting live stream: ${streamId} by instructor: ${instructorId}`);
-            activeLiveStreams.set(streamId, { streamId, instructorId });
-            io.emit('new-live-stream', { streamId, instructorId });
+            const timestamp = Date.now();
+            activeLiveStreams.set(streamId, { streamId, instructorId, timestamp });
+            io.emit('new-live-stream', { streamId, instructorId, timestamp });
         });
         socket.on("get-current-live-streams", () => {
             const currentStreams = Array.from(activeLiveStreams.values());

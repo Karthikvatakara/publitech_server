@@ -1,5 +1,6 @@
 import { getInstructorFcmToken } from "../database/repositories/getInstructorFcmToken";
 import { firebase } from "../../utils/adminFirebase";
+import { removeInvalidToken } from "../database/repositories/removeInvalidToken";
 
 export const notifyInstructor = async (title: string, body: string, iconUrl: string, userId: string): Promise<any> => {
     console.log(`🚀 ~ notifyInstructor ~ userId: ${userId}`);
@@ -11,7 +12,7 @@ export const notifyInstructor = async (title: string, body: string, iconUrl: str
         const instructorFcmToken: any = await getInstructorFcmToken(userId);
 
         const validTokens: string[] = instructorFcmToken
-            .flat() // Flattens nested arrays, if any
+            .flat()
             .filter((token:string): token is string => token !== undefined);
 
         const sendPromises = validTokens.map(async (token) => {
@@ -28,6 +29,7 @@ export const notifyInstructor = async (title: string, body: string, iconUrl: str
 
             try {
                 const response = await firebase.messaging().send(message);
+                // const response = await firebase.messaging().sendAll(message);
                 console.log(`Notification sent successfully to token: ${token}`);
                 return { success: true, token, response };
             } catch (error) {

@@ -9,7 +9,7 @@ const questionSchema = new Schema({
     options: [
         {
             option: { 
-                type: String, 
+                type: String,  
                 required: true
             }
         }
