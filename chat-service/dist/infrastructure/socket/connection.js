@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const activeLiveStreams = new Map(); // Global declaration
 const socket = require('socket.io');
 console.log(process.env.CLIENT_URL, "env");
 const connectSocketIo = (server) => {
@@ -10,8 +11,6 @@ const connectSocketIo = (server) => {
         },
     });
     const userSocketMap = {};
-    const activeLiveStreams = new Map();
-    // let liveStreams = {};
     io.on("connection", (socket) => {
         console.log("socket connected");
         const userId = socket.handshake.query.userId;
@@ -62,7 +61,6 @@ const connectSocketIo = (server) => {
         socket.on('join-live-stream', ({ streamId, studentId }) => {
             console.log(`Student ${studentId} joining stream ${streamId}`);
             socket.join(streamId);
-            // io.to(streamId).emit('student-joined', { studentId, socketId: socket.id });
             io.emit('student-joined', { studentId, socketId: socket.id });
         });
         socket.on('webrtc-offer', ({ streamId, offer, receiverSocketId }) => {

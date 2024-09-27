@@ -21,6 +21,7 @@ export const applyToTeachController = (dependencies:IDependencies) => {
             
             
             const user: any = await findByEmailUseCase(dependencies).execute(value.email);
+            console.log("🚀 ~ returnasync ~ user:", user)
             console.log(user);
             
             if(!user){

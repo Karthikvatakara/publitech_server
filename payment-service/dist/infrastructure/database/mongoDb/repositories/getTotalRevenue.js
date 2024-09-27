@@ -47,7 +47,7 @@ const getTotalRevenue = () => __awaiter(void 0, void 0, void 0, function* () {
             combinedRevenue[key] = item.totalAmount;
         });
         subscriptionRevenue.forEach((item) => {
-            const key = `${item._id.year}-${item._id.month}`; // Create a unique key for year and month
+            const key = `${item._id.year}-${item._id.month}`;
             combinedRevenue[key] = (combinedRevenue[key] || 0) + item.totalAmount;
         });
         const formattedData = Object.keys(combinedRevenue).map((key) => {

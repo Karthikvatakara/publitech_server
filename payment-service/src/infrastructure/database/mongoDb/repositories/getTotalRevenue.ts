@@ -1,7 +1,8 @@
 import { Payment } from "../models/payment";
 import { subscriptionPayment } from "../models/subscriptionPayment";
+import { PaymentPopulatedEntity } from "../../../../domain/entities/PaymentPopulatedEntity";
 
-export const getTotalRevenue = async() => {
+export const getTotalRevenue = async()=> {
     try{
         const paymentsRevenue = await Payment.aggregate([
             {
@@ -40,7 +41,7 @@ export const getTotalRevenue = async() => {
         });
 
         subscriptionRevenue.forEach((item) => {
-            const key = `${item._id.year}-${item._id.month}`; // Create a unique key for year and month
+            const key = `${item._id.year}-${item._id.month}`; 
             combinedRevenue[key] = (combinedRevenue[key] || 0) + item.totalAmount;
           });
 

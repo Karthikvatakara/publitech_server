@@ -1,4 +1,5 @@
+import { PaymentPopulatedEntity } from "../entities/PaymentPopulatedEntity"
 
 export interface IGetTotalRevenue {
-    execute:() => Promise<{year: number, month: number, totalRevenue: number}[] | null>
+    execute:() => Promise<PaymentPopulatedEntity[] | null>
 }
