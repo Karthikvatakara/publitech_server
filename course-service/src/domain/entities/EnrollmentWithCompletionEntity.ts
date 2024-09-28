@@ -35,5 +35,5 @@ export interface EnrollmentWithCompletionEntity {
             isCompleted: boolean;
         }[];
     };
-    completionPercentage: string; // Computed as a string
+    completionPercentage: string | number; 
 }

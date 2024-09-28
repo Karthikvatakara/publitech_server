@@ -21,6 +21,7 @@ const noOfStudentEnrolledCoursesController = (dependencies) => {
         try {
             const userId = (_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a._id;
             const noOfCourses = yield noOfStudentEnrolledCoursesUseCase(dependencies).execute(userId);
+            console.log("🚀 ~ returnasync ~ noOfCourses:", noOfCourses);
             if (!noOfCourses) {
                 throw ErrorResponse_1.default.notFound("no of courses no found");
             }

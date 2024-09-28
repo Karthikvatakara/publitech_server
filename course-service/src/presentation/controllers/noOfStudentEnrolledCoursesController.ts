@@ -10,6 +10,7 @@ export const noOfStudentEnrolledCoursesController = ( dependencies: IDependencie
             const userId = req?.user?._id;
 
             const noOfCourses = await noOfStudentEnrolledCoursesUseCase(dependencies).execute(userId!);
+            console.log("🚀 ~ returnasync ~ noOfCourses:", noOfCourses)
 
             if(!noOfCourses) {
                 throw  ErrorResponse.notFound("no of courses no found");
