@@ -3,6 +3,7 @@ import { assessmentEntity } from "../../domain/entities/assessmentEntity";
 import { resultEntity } from "../../domain/entities/resultEntity";
 import { EnrollmentWithCompletionEntity } from "../../domain/entities/EnrollmentWithCompletionEntity";
 import { CategoryDistributionEntity } from "../../domain/entities/CategoryDistributionEntity";
+import { ObjectId } from "mongoose";
 
 export interface IRespositories {
     findByEmail:(email:string) => Promise<UserEntity | null>,
@@ -46,7 +47,7 @@ export interface IRespositories {
     noOfStudentsPurchased:(instructorId: string ) => Promise<number | null>
     instructorCourses: ( instructorId: string ) => Promise<CourseEntity[] | null>
     instructorEnrollments:(instructorId: string) => Promise<EnrollmentEntity[] | any>
-    studentEnrolledCourses:( userId: string ) => Promise<EnrollmentWithCompletionEntity[] | null>
+    studentEnrolledCourses:( userId: string  | ObjectId) => Promise<EnrollmentWithCompletionEntity[] | null>
     noOfStudentEnrolledCourses:( userId: string ) => Promise<number | null>
     noOfCompletedEnrollments: ( userId: string ) => Promise<number | null>
 }

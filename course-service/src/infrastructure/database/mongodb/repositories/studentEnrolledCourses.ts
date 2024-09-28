@@ -1,8 +1,9 @@
 import { Enrollment } from "../models";
 import { course } from "../models";
 import { EnrollmentWithCompletionEntity } from "../../../../domain/entities/EnrollmentWithCompletionEntity";
+import { ObjectId } from "mongoose";
 
-export const studentEnrolledCourses = async (userId: string): Promise<EnrollmentWithCompletionEntity[]> => {
+export const studentEnrolledCourses = async (userId: string | ObjectId): Promise<EnrollmentWithCompletionEntity[]> => {
     try {
         const enrollments = await Enrollment.find({ userId })
             .populate<{
