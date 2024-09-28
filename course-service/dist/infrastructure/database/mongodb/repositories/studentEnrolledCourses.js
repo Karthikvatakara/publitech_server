@@ -21,15 +21,32 @@ const studentEnrolledCourses = (userId) => __awaiter(void 0, void 0, void 0, fun
             select: 'title description thumbnail pricing lessons'
         });
         const enrollmentsWithCompletion = enrollments.map((enrollment) => {
+            var _a, _b, _c, _d;
             const progress = enrollment === null || enrollment === void 0 ? void 0 : enrollment.progress;
             const lessonProgress = progress === null || progress === void 0 ? void 0 : progress.lessonProgress;
-            if (!lessonProgress || lessonProgress.length === 0) {
-                return Object.assign(Object.assign({}, enrollment.toObject()), { completionPercentage: '0.00' });
-            }
-            const completedLessons = lessonProgress.filter((lesson) => lesson.isCompleted).length;
+            const completedLessons = (lessonProgress === null || lessonProgress === void 0 ? void 0 : lessonProgress.filter((lesson) => lesson.isCompleted).length) || 0;
             const totalLessons = enrollment.courseId.lessons.length;
             const completionPercentage = ((completedLessons / totalLessons) * 100).toFixed(2);
-            return Object.assign(Object.assign({}, enrollment.toObject()), { completionPercentage });
+            return {
+                _id: enrollment._id.toString(),
+                userId: enrollment.userId.toString(),
+                courseId: {
+                    _id: enrollment.courseId._id.toString(),
+                    title: enrollment.courseId.title,
+                    description: enrollment.courseId.description,
+                    thumbnail: enrollment.courseId.thumbnail,
+                    pricing: enrollment.courseId.pricing,
+                    lessons: enrollment.courseId.lessons.map(lesson => (Object.assign(Object.assign({}, lesson), { _id: lesson._id.toString() })))
+                },
+                enrolledAt: enrollment.enrolledAt,
+                progress: enrollment.progress ? {
+                    completedLessons: (_a = enrollment.progress.completedLessons) === null || _a === void 0 ? void 0 : _a.map(id => id.toString()),
+                    completedAssessments: (_b = enrollment.progress.completedAssessments) === null || _b === void 0 ? void 0 : _b.map(id => id.toString()),
+                    currentLesson: (_c = enrollment.progress.currentLesson) === null || _c === void 0 ? void 0 : _c.toString(),
+                    lessonProgress: (_d = enrollment.progress.lessonProgress) === null || _d === void 0 ? void 0 : _d.map(progress => (Object.assign(Object.assign({}, progress), { lessonId: progress.lessonId.toString() })))
+                } : undefined,
+                completionPercentage
+            };
         });
         return enrollmentsWithCompletion;
     }

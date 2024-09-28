@@ -1,4 +1,3 @@
-// EnrollmentWithCompletionEntity.ts
 export interface EnrollmentWithCompletionEntity {
     _id: string;
     userId: string;
@@ -17,23 +16,19 @@ export interface EnrollmentWithCompletionEntity {
             description: string;
             thumbnail: string;
             video: string;
-            attachments?: {
-                title: string;
-                url: string;
-            };
         }[];
     };
-    enrolledAt: Date;
-    progress: {
-        completedLessons: string[];
-        completedAssessments: string[];
-        currentLesson: string;
-        lessonProgress: {
+    enrolledAt?: Date | string;
+    progress?: {
+        completedLessons?: string[];
+        completedAssessments?: string[];
+        currentLesson?: string;
+        lessonProgress?: {
             lessonId: string;
             totalTimeWatched: number;
             lastWatchedPosition: number;
             isCompleted: boolean;
         }[];
     };
-    completionPercentage: string | number; 
+    completionPercentage: string;
 }
