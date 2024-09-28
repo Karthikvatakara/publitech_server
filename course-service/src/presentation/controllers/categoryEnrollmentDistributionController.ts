@@ -11,7 +11,7 @@ export const categoryEnrollmentDistributionController = ( dependencies: IDepende
             const categoryEnrollment = await categoryEnrollmentDistributionUseCase(dependencies).execute();
 
             if(!categoryEnrollment){
-                throw ErrorResponse.notFound("enrollment distribution not found")
+                throw ErrorResponse.notFound("enrollment distribution not found");
             };
 
             res.status(200).json({ success: true, data: categoryEnrollment, message: "enrollment fetched successfully"})

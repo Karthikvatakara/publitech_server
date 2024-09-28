@@ -1,3 +1,5 @@
+import { CategoryDistributionEntity } from "../entities/CategoryDistributionEntity";
+
 export interface ICategoryEnrollmentDistributionUseCase {
-    execute:() => Promise<{ category: string; percentage: number }[]>
+    execute:() => Promise<CategoryDistributionEntity[] | null>
 }

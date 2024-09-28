@@ -1,6 +1,8 @@
 import { CategoryEntity, UserEntity,CourseEntity,EnrollmentEntity, LessonProgress } from "../../domain/entities";
 import { assessmentEntity } from "../../domain/entities/assessmentEntity";
 import { resultEntity } from "../../domain/entities/resultEntity";
+import { EnrollmentWithCompletionEntity } from "../../domain/entities/EnrollmentWithCompletionEntity";
+import { CategoryDistributionEntity } from "../../domain/entities/CategoryDistributionEntity";
 
 export interface IRespositories {
     findByEmail:(email:string) => Promise<UserEntity | null>,
@@ -38,13 +40,13 @@ export interface IRespositories {
     getResultsByUserId:( userId: string ) => Promise<resultEntity[] | null>
     checkResultOfAssessmentAndUserId: ( assessmentRef: string, userRef: string ) => Promise<resultEntity | null>
     updateResult: ( resultId: string, data: resultEntity) => Promise<resultEntity | null>
-    categoryEnrollmentDistribution:() => Promise<{ category: string; percentage: number }[]> 
+    categoryEnrollmentDistribution:() => Promise<CategoryDistributionEntity[] | null> 
     topEnrollments:() => Promise<CourseEntity[] | null>
     totalCoursesOfInstructor:(userId: string) => Promise<number | null>
     noOfStudentsPurchased:(instructorId: string ) => Promise<number | null>
     instructorCourses: ( instructorId: string ) => Promise<CourseEntity[] | null>
     instructorEnrollments:(instructorId: string) => Promise<EnrollmentEntity[] | any>
-    studentEnrolledCourses:( userId: string ) => Promise<EnrollmentEntity[] | null>
+    studentEnrolledCourses:( userId: string ) => Promise<EnrollmentWithCompletionEntity[] | null>
     noOfStudentEnrolledCourses:( userId: string ) => Promise<number | null>
     noOfCompletedEnrollments: ( userId: string ) => Promise<number | null>
 }

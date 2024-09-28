@@ -1,6 +1,8 @@
 import { course, Enrollment } from "../models"
+import { CategoryDistributionEntity } from "../../../../domain/entities/CategoryDistributionEntity";
+import { CourseWithCategoryEntity } from "../../../../domain/entities/CoursesWithCategoryEntity";
 
-export const categoryEnrollmentDistribution = async() => {
+export const categoryEnrollmentDistribution = async(): Promise<CategoryDistributionEntity[] | null> => {
     try{
 
         const enrollmentByCourse = await Enrollment.aggregate([
@@ -8,7 +10,7 @@ export const categoryEnrollmentDistribution = async() => {
         ]);
         console.log("🚀 ~ categoryEnrollmentDistribution ~ enrollmentByCourse:", enrollmentByCourse)
 
-        const coursesWithCategories = await course.aggregate([
+        const coursesWithCategories : CourseWithCategoryEntity[] = await course.aggregate([
             { $match: { _id: {$in: enrollmentByCourse.map(enrollment => enrollment._id)}}},
             { $lookup: {
                 from:"categories",
@@ -33,8 +35,8 @@ export const categoryEnrollmentDistribution = async() => {
         },{} as Record<string, { category: string; count: number }>);
         console.log("🚀 ~ enrollmentsByCategory ~ enrollmentsByCategory:", enrollmentsByCategory)
 
-        const totalEnrollments:any = Object.values(enrollmentsByCategory).reduce((sum, category) => sum + category.count, 0);
-        const categoryDistribution = Object.values(enrollmentsByCategory).map(category => ({
+        const totalEnrollments = Object.values(enrollmentsByCategory).reduce((sum, category) => sum + category.count, 0);
+        const categoryDistribution:CategoryDistributionEntity[] = Object.values(enrollmentsByCategory).map(category => ({
             category: category.category,
             percentage: totalEnrollments > 0 ? (category.count / totalEnrollments) * 100 : 0
         }));
