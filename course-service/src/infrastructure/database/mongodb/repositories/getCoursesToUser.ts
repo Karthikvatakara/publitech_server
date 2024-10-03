@@ -39,7 +39,6 @@ export const getCoursesToUser = async(params:{
                             .sort(sortOption)
                             .skip((page-1) * limit)
                             .limit(limit);
-        console.log("🚀 ~ courseData:", courseData)
 
         return { courses: courseData, totalPages, currentPage:page};
     }catch(error){

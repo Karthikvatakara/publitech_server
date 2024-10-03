@@ -9,6 +9,7 @@ export const getCourseController = (dependencies:IDependencies) => {
         try{
             console.log("🚀 ~ returnasync ~ id:haiiiiiiiiiiiiiiiiiiiiii")
             const { id } = req.params;
+            console.log("🚀 ~ returnasync ~ id:", id)
 
             if(!mongoose.Types.ObjectId.isValid(id)) {
                 throw new Error("objectid is not valid")

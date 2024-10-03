@@ -35,4 +35,4 @@ jobs:
           context: ./gateway-devv/
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: karthik496/publitech-auth-service:latest
+          tags: karthik496/publitech-gateway-devv-service:latest

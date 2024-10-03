@@ -104,6 +104,11 @@ const connectSocketIo = (server: Server) => {
             io.to(receiverSocketId).emit('webrtc-ice-candidate', { candidate, senderSocketId: socket.id });
         });
 
+        socket.on('block-user', ({ userId }) => {
+            console.log(`Blocking user: ${userId}1111111111111111111111111111`);
+            io.to(userSocketMap[userId]).emit('user-blocked');
+        });
+
         socket.on("disconnect", () => {
             console.log("Socket disconnected");
             if (userId !== "undefined") {

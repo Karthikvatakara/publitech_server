@@ -17,10 +17,16 @@ export const getUserController = (dependencies:IDependencies) => {
             const result = await findUserByIdUseCase(dependencies).execute(req.user._id)
             
             if(!result){
-                throw new Error("user not found")
+                return res.status(404).json({
+                    success: false,
+                    message: "User not found"
+                });
             }
             if(result.isBlocked) {
-                throw new Error("user is blocked")
+                return res.status(403).json({
+                    success: false,
+                    message: "User is blocked"
+                });
             }
                 console.log("🚀 ~ returnasync ~ result:rrrrrrrrrrrrrrrrrrrr", result)
             res.status(200).json({success:true,data:result,message:"user found"})

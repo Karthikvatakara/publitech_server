@@ -41,7 +41,6 @@ const getCoursesToUser = (params) => __awaiter(void 0, void 0, void 0, function*
             .sort(sortOption)
             .skip((page - 1) * limit)
             .limit(limit);
-        console.log("🚀 ~ courseData:", courseData);
         return { courses: courseData, totalPages, currentPage: page };
     }
     catch (error) {
