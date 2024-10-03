@@ -8,6 +8,7 @@ export const createUser = async( data: UserEntity ):Promise<UserEntity | null> =
         if(!newUser){
             throw new Error("user not created")
         }
+        
 
         return newUser;
     }catch(error){

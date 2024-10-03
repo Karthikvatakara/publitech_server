@@ -9,6 +9,7 @@ config();
 
 const app: Application = express();
 
+
 //middlewares 
 app.use(cookieParser());
 app.use(express.json());
@@ -80,7 +81,7 @@ routes.forEach((route) => {
 const PORT:number = Number(process.env.PORT||8000);
 
 app.listen(PORT,()=>{
-    console.log(`api gateway is connected to port${PORT}`);
+    console.log(`api gateway is connected in to port${PORT}`);
 })
 
 
