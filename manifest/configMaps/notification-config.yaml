@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notification-config
+  labels:
+    app: publitech-notification-service
+data:
+  PORT: "3002"
+  EMAIL_HOST: 'smtp.gmail.com'
+  EMAIL_PORT: "465"
+  EMAIL_USER: 'shoose.greetings@gmail.com'
+  EMAIL_PASS: 'ylsm nbmc ryxv czsy'
+  MONGO_URL: mongodb+srv://krishnankarthik07:Dq5j7A7k5p6ONcF1@cluster0.0ofmj.mongodb.net/publitech-notification-service?retryWrites=true&w=majority&appName=Cluster0
+  ACCESS_TOKEN_SECRET: "asdfghjklzxcvbnmasdfghjkasdfgh"
+  REFRESH_TOKEN_SECRET: "asdfghjkliuytrertyuioiugfghjkgfhgf"
+  FIREBASE_TYPE: service_account
+  FIREBASE_PROJECT_ID: publitech-62bf2
+  FIREBASE_PRIVATE_KEY_ID: 10382bdf293f3f86455859918c1fb61286da6a20
+  FIREBASE_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDPU39SgiiAw892\nU2xkq+0m+GPJy2gUGqS1WtD9grayS4SXq4SbZt9jUFPIIpOw5hWNFW4m7PwkND6M\n3rGCPIEgXFd/Rb/TMyVlOqMQKKMslHx5+ns1ComFGMqK7lb4Hg+ShNA6m2U6sbQO\nSn2vXhAUoBw9S3oMV40MjoAGm/b/HlKwmOdzSN0YNHk+F/urhAcb1T++jWYXM6HE\nH7plSGcvK01pmmQX685imprp52cdbvjumHBxJx6KLZIj4OyvxUoMYVyXfVZ4ogD7\nAX/IN6xE2R0wjXkUS+Z0fGRZGIFrK8uXbQ13w1nKJQvs0lr70RM635Wvsdcmc+KF\ne+3cONPhAgMBAAECggEAPBc0WQK2oJOgZuhJC2i1ZM0rhwp4kRMj2BiJaGDheQ3g\nUWF6HtyTNKLMlb5H1kbpyimC8q9PaWLnGkdVZa0JtApvpcjej2VMmmmDZ6SPntUu\nut/5o+b48uW7lsb72BBGbS4neEUf8wIccOPwR8rYmFHLvYxJxJf/nrsSqle8IDbx\nKDNAZw0ZQq8VxeugtWuWgf0u+x5al1LyxscfDb+TiO/PocjvWXcnzLoKZTiBT4yt\nfVXlzGMi54m6llI1pROQ6pkWYZzg2DUH7ToYtzt96iFDPOi6mg2OWetGMLtDxprE\n3VfAaPbyua0rZBrnZ45Lz3SAe/DI05rEjvjoFxq7/QKBgQDqzKUM6zKm8Z6mSNH3\nwW1HIPonLsH3b7Iom2UesqL3UathAmT6Zrh+vkIGCuDYKXRTlkrFi9h2GypCWlFL\nnHcjYEIuqkHU9XrJqn9nbewaIF8PkGY2VTdrrzL2yTYQUio53fUxJJF64O3waNMh\nLkU0NoCl90IqNDst1/A2Aq+ZswKBgQDiC9AMzC4yYUmTw2b/w0U73knMXu9oKaJ2\n1MtLl0dqfo+5fdsxyIJdbkcLxvvL4gObkuI5q2/ZMtsDWASjlAzoazckZv7n9w8d\n8mV4YxRdvBD3X1QNWkE0fnSe+6Rwj3M+TIYAaEgnHRO6lWtHhDv5I6koBbl64vGc\ndnwqIvLqGwKBgAteLxuKA6DLj/fTDL9nEQhhk1r0S5XURZbrtyCeW3+H57lBqWvq\nL0KLqZyrSCmPED+/xgz8cVV+iTQ/NTJo9+exkGK8AYXzAKfk5lg2nTjCmnehcSFu\nTMmc6OXD5icyIzM8CNQBRj3hyANcv+QaXmVhwibG6uAqOTdF/i5PQPs7AoGASMmC\n+cv5iDF5jsIZ9Xt8XLXMT6m2L3VQojENMU8KKQmN4C3dmh81kz5CVFGDnPgvLzZR\n8D366xaMHXyHKeEvcturSuZ7aFhOntcBw40r7q7zS6R/nTkVzAB4LwVawv/+HO5p\nK9JogWfEhY09mS7EXQoVmxSU0DQplrc0biEI1UcCgYEAv02oGY7h8MEgpiunxxzq\nZP8yrkZoeZekcZ1bWa18n5fQt7Z1QBBPtxsFSG4RIJz7r0dFLufTx6oWDcLJ0JrT\nZEmUfuaW2sLiCmZcJU927G0+AODs4wrJ2T8+LEDdKpQ6Eh4hSCpgFKAQfbJq2J9Q\nBqyylQYP+Ybo+h1ENqNvZEA=\n-----END PRIVATE KEY-----\n"
+  FIREBASE_CLIENT_EMAIL: firebase-adminsdk-pdg8h@publitech-62bf2.iam.gserviceaccount.com
+  FIREBASE_CLIENT_ID: "110670672619509716264"
+  FIREBASE_AUTH_URI: https://accounts.google.com/o/oauth2/auth
+  FIREBASE_TOKEN_URI: https://oauth2.googleapis.com/token
+  FIREBASE_AUTH_PROVIDER_X509_CERT_URL: https://www.googleapis.com/oauth2/v1/certs
+  FIREBASE_CLIENT_X509_CERT_URL: https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-pdg8h%40publitech-62bf2.iam.gserviceaccount.com
+  FIREBASE_UNIVERSE_DOMAIN: googleapis.com
+  NODE_ENV: "production"

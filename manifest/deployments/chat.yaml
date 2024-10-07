@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publitech-chat-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publitech-chat-service
+  template:
+    metadata:
+      labels:
+        app: publitech-chat-service
+    spec:
+      containers:
+        - image: karthik496/publitech-chat-service:latest
+          name: publitech-chat-service
+          envFrom:
+            - configMapRef:
+                name: chat-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publitech-chat-service
+spec:
+  selector:
+    app: publitech-chat-service
+  ports:
+    - protocol: TCP
+      port: 3006
+      targetPort: 3006
+ 

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publitech-payment-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publitech-payment-service
+  template:
+    metadata:
+      labels:
+        app: publitech-payment-service
+    spec:
+      containers:
+        - image: karthik496/publitech-payment-service
+          name: publitech-payment-service
+          envFrom:
+            - configMapRef:
+                name: payment-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publitech-payment-service
+spec:
+  selector:
+    app: publitech-payment-service
+  ports:
+    - protocol: TCP
+      port: 3005
+      targetPort: 3005
+ 

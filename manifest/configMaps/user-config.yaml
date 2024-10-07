@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-config
+  labels:
+    app: publitech-user-service
+data:
+  MONGO_URL: mongodb+srv://krishnankarthik07:Dq5j7A7k5p6ONcF1@cluster0.0ofmj.mongodb.net/publitech-user-service?retryWrites=true&w=majority&appName=Cluster0
+  PORT: "3003"
+  ACCESS_TOKEN_SECRET: "asdfghjklzxcvbnmasdfghjkasdfgh"
+  REFRESH_TOKEN_SECRET: "asdfghjkliuytrertyuioiugfghjkgfhgf"
+  NODE_ENV: "production"

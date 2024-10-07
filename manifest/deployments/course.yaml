@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publitech-course-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publitech-course-service
+  template:
+    metadata:
+      labels:
+        app: publitech-course-service
+    spec:
+      containers:
+        - image: karthik496/publitech-course-service:latest
+          name: publitech-course-service
+          envFrom:
+            - configMapRef:
+                name: course-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publitech-course-service
+spec:
+  selector:
+    app: publitech-course-service
+  ports:
+    - protocol: TCP
+      port: 3004
+      targetPort: 3004
+ 

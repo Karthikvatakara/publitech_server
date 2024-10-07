@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: course-config
+  labels:
+    app: publitech-course-service
+data:
+  PORT: "3004"
+  MONGO_URL: "mongodb+srv://krishnankarthik07:Dq5j7A7k5p6ONcF1@cluster0.0ofmj.mongodb.net/publitech-course-service?retryWrites=true&w=majority&appName=Cluster0"
+  ACCESS_TOKEN_SECRET: "asdfghjklzxcvbnmasdfghjkasdfgh"
+  REFRESH_TOKEN_SECRET: "asdfghjkliuytrertyuioiugfghjkgfhgf"

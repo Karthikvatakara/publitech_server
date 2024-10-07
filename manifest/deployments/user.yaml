@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publitech-user-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publitech-user-service
+  template:
+    metadata:
+      labels:
+        app: publitech-user-service
+    spec:
+      containers:
+        - image: karthik496/publitech-user-service
+          name: publitech-user-service
+          envFrom:
+            - configMapRef:
+                name: user-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publitech-user-service
+spec:
+  selector:
+    app: publitech-user-service
+  ports:
+    - protocol: TCP
+      port: 3003
+      targetPort: 3003
+ 

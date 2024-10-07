@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chat-config
+  labels:
+    app: publitech-chat-service
+data:
+  MONGO_URL: mongodb+srv://krishnankarthik07:Dq5j7A7k5p6ONcF1@cluster0.0ofmj.mongodb.net/publitech-chat-service?retryWrites=true&w=majority&appName=Cluster0
+  PORT: "3006"
+  ACCESS_TOKEN_SECRET: "asdfghjklzxcvbnmasdfghjkasdfgh"
+  REFRESH_TOKEN_SECRET: "asdfghjkliuytrertyuioiugfghjkgfhgf"
+  CLIENT_URL: "http://localhost:5173"
+  NODE_ENV: "production"

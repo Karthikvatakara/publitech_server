@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-config
+  labels:
+    app: publitech-auth-service
+data:
+  MONGO_URL: "mongodb+srv://krishnankarthik07:Dq5j7A7k5p6ONcF1@cluster0.0ofmj.mongodb.net/publitech-auth-service?retryWrites=true&w=majority&appName=Cluster0"
+  PORT: "3001"
+  REDIS_HOST: "redis-stack"
+  REDIS_PORT: "6379"
+  REDIS_PASSWORD: "karthikpp"
+  ACCESS_TOKEN_SECRET: "asdfghjklzxcvbnmasdfghjkasdfgh"
+  REFRESH_TOKEN_SECRET: "asdfghjkliuytrertyuioiugfghjkgfhgf"
+  FORGOTPASSWORD_ACCESS_TOKEN_SECRET: "mkjbhvhvcgccffcfcxdxdxfcfgfgf"
+  GOOGLE_CLIENT_ID: "816593476387-51filv8g64130omc5q012ikhgaijvgs1.apps.googleusercontent.com"
+  NODE_ENV: "production"
