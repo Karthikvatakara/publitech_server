@@ -9,7 +9,7 @@ import { Kafka,Producer,Consumer } from "kafkajs";
 // production
 const kafka = new Kafka({
     clientId: "auth-service",
-    brokers: ["zookeeper:9092"]  
+    brokers: ["kafka:9092"]  
 });
 
 export const producer:Producer = kafka.producer()

@@ -46,6 +46,7 @@ export const signupController = (dependencies:IDependencies) => {
             try{
                 const { email,otp } = userCredentials
                 const isVerified = await verifyOtpUseCase(dependencies).execute(email,otp);
+                console.log("🚀 ~ returnasync ~ isVerified:", isVerified)
              
                 if(!isVerified){
                     throw new Error("otp is invalid")

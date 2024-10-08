@@ -14,4 +14,5 @@ data:
   REFRESH_TOKEN_SECRET: "asdfghjkliuytrertyuioiugfghjkgfhgf"
   FORGOTPASSWORD_ACCESS_TOKEN_SECRET: "mkjbhvhvcgccffcfcxdxdxfcfgfgf"
   GOOGLE_CLIENT_ID: "816593476387-51filv8g64130omc5q012ikhgaijvgs1.apps.googleusercontent.com"
+  REDIS_URL: redis://red-crvq453tq21c738oo8a0:6379
   NODE_ENV: "production"
