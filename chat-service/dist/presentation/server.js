@@ -29,7 +29,8 @@ app.use((0, cors_1.default)(corsOptions));
 const server = http_1.default.createServer(app);
 (0, connection_1.default)(server);
 app.use((0, express_mongo_sanitize_1.default)());
-app.use("/", (0, chatRoutes_1.chatRoutes)(dependencies_1.dependencies));
+app.use("/api/chat", (0, chatRoutes_1.chatRoutes)(dependencies_1.dependencies));
+// app.use("/",chatRoutes(dependencies))
 app.use("*", (req, res) => {
     res.status(404).json({ success: false, status: 404, message: "Api not found" });
 });

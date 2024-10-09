@@ -32,8 +32,8 @@ connectSocketIo(server);
 
 app.use(mongoSanitize());
 
-
-app.use("/",chatRoutes(dependencies))
+app.use("/api/chat",chatRoutes(dependencies));
+// app.use("/",chatRoutes(dependencies))
 
 app.use("*",( req: Request, res: Response ) => {
     res.status(404).json({success:false,status:404,message:"Api not found"})

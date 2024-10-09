@@ -24,7 +24,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use("/",routes(dependecies))
+app.use("/api/user",routes(dependecies));
+// app.use("/",routes(dependecies))
 
 app.use("*",(req:Request,res:Response) => {
     res.status(404).json({success:false,status:404,message:"api not found"})

@@ -29,7 +29,8 @@ app.use(cors(corsOptions));
 
 app.use(mongoSanitize());
 
-app.use('/',authRoutes(dependencies));
+app.use("/api/auth",authRoutes(dependencies));
+// app.use('/',authRoutes(dependencies));
 
 app.use("*",(req:Request,res:Response) => {
     res.status(404).json({success:false,status:404,message:"Api not found"})
@@ -39,7 +40,6 @@ app.use(errorHandler)
 
 app.listen(PORT,()=> {
     console.log(`connected to auth service succesfully ${PORT}`);
-    
 })
 
 export default app
