@@ -15,18 +15,20 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser());
 
-const allowedOrigins = "http://localhost:5173"
+// const allowedOrigins = "http://localhost:5173";
+const allowedOrigins = "https://publitech-client.vercel.app";
 const corsOptions = {
     origin: allowedOrigins,
     methods: ["GET,HEAD,PUT,POST,DELETE"],
     credentials:true
 }
 
+
 app.use(cors(corsOptions));
 app.use(mongoSanitize());
 
-app.use("/api/course",courseRoutes(dependencies));
-// app.use('/',courseRoutes(dependencies));
+// app.use("/api/course",courseRoutes(dependencies));
+app.use('/',courseRoutes(dependencies));
 
 app.get("/",(req,res) =>{
     console.log("reached home page successfully");

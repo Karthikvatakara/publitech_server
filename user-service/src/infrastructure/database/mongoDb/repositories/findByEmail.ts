@@ -13,7 +13,7 @@ export const findByEmail = async (email:string): Promise<UserEntity | null> => {
 
         return existingUser as UserEntity;
         
-    }catch(error:any){
-        throw new Error(error?.message);
+    }catch(error){
+        throw new Error((error as Error)?.message);
     }
 }

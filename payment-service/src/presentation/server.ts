@@ -25,7 +25,8 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended:true }));
 app.use(cookieParser());
 
-const allowedOrigins = "http://localhost:5173"
+// const allowedOrigins = "http://localhost:5173";
+const allowedOrigins = "https://publitech-client.vercel.app";
 const corsOptions = {
     origin: allowedOrigins,
     methods: ["GET","HEAD","POST","PUT","DELETE"],
@@ -37,8 +38,8 @@ app.use(cors(corsOptions));
 app.use(mongoSanitize());
 
 
-app.use("/api/payment",paymentRoutes(dependencies));
-// app.use("/",paymentRoutes(dependencies));
+// app.use("/api/payment",paymentRoutes(dependencies));
+app.use("/",paymentRoutes(dependencies));
 
 
 

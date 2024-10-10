@@ -10,8 +10,8 @@ export const createUser = async(data:UserEntity):Promise<UserEntity | null> => {
         }
 
         return newUser
-    }catch(error:any){
+    }catch(error){
         console.error("error in the createuser repository")
-        throw new Error(error?.message)
+        throw new Error((error as Error)?.message)
     }
 }

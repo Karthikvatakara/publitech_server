@@ -7,7 +7,7 @@ export default async(data:UserEntity): Promise<void> => {
         const newUser = await createUser(data)
         console.log("data reached in usercreated consumer1111111111111111111",newUser);
         
-    }catch(error:any){
-        console.error("the errorr is",error?.message);
+    }catch(error){
+        console.error("the errorr is",(error as Error)?.message);
     }
 }

@@ -30,7 +30,7 @@ export const approveInstructorController = (dependecies:IDependencies) => {
              instructorApprovalProducer(approvedInstructor,"course-service-topic");
 
             res.status(200).json({success:true,data:approvedInstructor,message:"instuctor approved"})
-        }catch(error:any){
+        }catch(error){
             console.error("error in controlllers",error)
             next(error);
         }

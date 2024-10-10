@@ -19,7 +19,8 @@ const port = Number(process.env.PORT) || 4006;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
-const allowedOrigins = "http://localhost:5173";
+// const allowedOrigins = "http://localhost:5173";
+const allowedOrigins = "https://publitech-client.vercel.app";
 const corsOptions = {
     origin: allowedOrigins,
     methods: ["GET,HEAD,PUT,POST,DELETE"],
@@ -29,8 +30,8 @@ app.use((0, cors_1.default)(corsOptions));
 const server = http_1.default.createServer(app);
 (0, connection_1.default)(server);
 app.use((0, express_mongo_sanitize_1.default)());
-app.use("/api/chat", (0, chatRoutes_1.chatRoutes)(dependencies_1.dependencies));
-// app.use("/",chatRoutes(dependencies))
+// app.use("/api/chat",chatRoutes(dependencies));
+app.use("/", (0, chatRoutes_1.chatRoutes)(dependencies_1.dependencies));
 app.use("*", (req, res) => {
     res.status(404).json({ success: false, status: 404, message: "Api not found" });
 });

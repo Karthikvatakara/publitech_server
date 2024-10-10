@@ -13,7 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieparser());
 
-const allowedOrigins = "http://localhost:5173"
+// const allowedOrigins = "http://localhost:5173";
+const allowedOrigins = "https://publitech-client.vercel.app";
 const corsOptions = {
     origin: allowedOrigins,
     methods: ["GET,HEAD,PUT,POST,DELETE"],
@@ -25,8 +26,8 @@ app.use(cors(corsOptions));
 
 app.use(mongoSanitize());
 
-app.use("/api/notification",notificationRoutes(dependencies));
-// app.use("/",notificationRoutes(dependencies))
+// app.use("/api/notification",notificationRoutes(dependencies));
+app.use("/",notificationRoutes(dependencies))
 
 
 app.use("*",(req:Request,res:Response) => {

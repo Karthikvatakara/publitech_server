@@ -29,7 +29,7 @@ export const getallInstructors = async( page: number, limit: number, status: str
 
         return { instructors, totalPages, totalCount}
         
-    }catch(error:any){
+    }catch(error){
         throw new Error((error as Error)?.message);
     }
 }

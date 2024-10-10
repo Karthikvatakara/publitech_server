@@ -8,7 +8,7 @@ export default async(data:applyToTeachEntity):Promise<void> => {
         const appliedInstructor = await applyToTeach(data)
         console.log(appliedInstructor,"data reahced in applytoteach consumer mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
         
-    }catch(error:any){
+    }catch(error){
         console.error("error occured in the applyto teachconsumer")
     }
 }

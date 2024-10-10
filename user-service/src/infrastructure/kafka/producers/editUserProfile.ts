@@ -16,8 +16,8 @@ export default async(data:UserEntity,topic:string) => {
             ]
         }
         await producer.send(messages)
-    }catch(error:any){
-        console.error("kafka produce error", error?.message)
+    }catch(error){
+        console.error("kafka produce error", (error as Error)?.message)
     }finally{
         await producer.disconnect();
     }
