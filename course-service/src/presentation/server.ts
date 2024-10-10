@@ -27,8 +27,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(mongoSanitize());
 
-// app.use("/api/course",courseRoutes(dependencies));
-app.use('/',courseRoutes(dependencies));
+app.use("/api/course",courseRoutes(dependencies));
+// app.use('/',courseRoutes(dependencies));
 
 app.get("/",(req,res) =>{
     console.log("reached home page successfully");

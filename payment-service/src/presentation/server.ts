@@ -38,8 +38,8 @@ app.use(cors(corsOptions));
 app.use(mongoSanitize());
 
 
-// app.use("/api/payment",paymentRoutes(dependencies));
-app.use("/",paymentRoutes(dependencies));
+app.use("/api/payment",paymentRoutes(dependencies));
+// app.use("/",paymentRoutes(dependencies));
 
 
 

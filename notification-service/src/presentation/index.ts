@@ -26,8 +26,8 @@ app.use(cors(corsOptions));
 
 app.use(mongoSanitize());
 
-// app.use("/api/notification",notificationRoutes(dependencies));
-app.use("/",notificationRoutes(dependencies))
+app.use("/api/notification",notificationRoutes(dependencies));
+// app.use("/",notificationRoutes(dependencies))
 
 
 app.use("*",(req:Request,res:Response) => {

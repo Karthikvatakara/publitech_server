@@ -34,8 +34,8 @@ const corsOptions = {
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, express_mongo_sanitize_1.default)());
-// app.use("/api/payment",paymentRoutes(dependencies));
-app.use("/", (0, paymentRoutes_1.paymentRoutes)(dependencies_1.dependencies));
+app.use("/api/payment", (0, paymentRoutes_1.paymentRoutes)(dependencies_1.dependencies));
+// app.use("/",paymentRoutes(dependencies));
 app.use("*", (req, res) => {
     res.status(404).json({ success: false, status: 404, message: "Api not found" });
 });

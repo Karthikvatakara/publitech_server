@@ -30,8 +30,8 @@ app.use(cors(corsOptions));
 
 app.use(mongoSanitize());
 
-// app.use("/api/auth",authRoutes(dependencies));
-app.use('/',authRoutes(dependencies));
+app.use("/api/auth",authRoutes(dependencies));
+// app.use('/',authRoutes(dependencies));
 
 app.use("*",(req:Request,res:Response) => {
     res.status(404).json({success:false,status:404,message:"Api not found"})

@@ -26,8 +26,8 @@ const corsOptions = {
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, express_mongo_sanitize_1.default)());
-// app.use("/api/course",courseRoutes(dependencies));
-app.use('/', (0, courseRoutes_1.courseRoutes)(dependencies_1.dependencies));
+app.use("/api/course", (0, courseRoutes_1.courseRoutes)(dependencies_1.dependencies));
+// app.use('/',courseRoutes(dependencies));
 app.get("/", (req, res) => {
     console.log("reached home page successfully");
     res.send("home page reached");
