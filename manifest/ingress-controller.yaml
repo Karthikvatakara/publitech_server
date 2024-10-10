@@ -9,10 +9,6 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-origin: "https://publitech-client.vercel.app"
 spec:
   ingressClassName: webapprouting.kubernetes.azure.com
-  tls:
-    - hosts:
-        - bizprogym.shop
-      secretName: cloudflare-cert-secret
   rules:
     - host: bizprogym.shop
       http:
