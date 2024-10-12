@@ -6,15 +6,17 @@ export const logoutController = (dependencies:IDependencies) =>{
     return async(req:Request,res:Response,next:NextFunction) => {
         try{
             res.cookie("access_Token","",{
-                maxAge:0,
+                maxAge:1,
                 httpOnly:true,
-                secure:true
+                secure:true,
+                sameSite: "none",
             })
 
             res.cookie("refresh_Token","",{
-                maxAge:0,
+                maxAge:1,
                 httpOnly:true,
-                secure:true
+                secure:true,
+                sameSite: "none",
             })
 
             res.status(204).json({})

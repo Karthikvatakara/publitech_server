@@ -38,8 +38,19 @@ export const loginController = (dependencies:IDependencies) => {
                 role: user?.role
             })
 
-            res.cookie("access_Token",accessToken,{httpOnly:true});
-            res.cookie("refresh_Token",refreshToken,{httpOnly:true})
+            // res.cookie("access_Token",accessToken,{httpOnly:true});
+            // res.cookie("refresh_Token",refreshToken,{httpOnly:true})
+            res.cookie("access_Token", accessToken, {
+                httpOnly: true,
+                secure: true,
+                sameSite:"none",
+            });
+        
+            res.cookie("refresh_Token", refreshToken, {
+                httpOnly: true,
+                secure: true,
+                sameSite:"none",
+            });
             res.status(200).json({success:true,data:user,message:"login successfull"})
         }catch(error:any) {
             console.error(error,"error in login controller");
