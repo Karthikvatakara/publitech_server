@@ -37,7 +37,7 @@ export const googleAuthController = (dependencies:IDependencies) => {
             const exist:any = await findByEmailUseCase(dependencies).execute(email);
             console.log("🚀 ~ returnasync ~ exist:", exist)
 
-            if(exist.isBlocked ) {
+            if(exist && exist.isBlocked ) {
                 throw new Error("you are blocked by admin")
             }
 
@@ -48,9 +48,17 @@ export const googleAuthController = (dependencies:IDependencies) => {
 
                 const refreshToken = generateRefreshToken({_id: String(exist?._id),email: exist?.email,role: exist?.role});
 
-                res.cookie("access_Token",accessToken, { httpOnly:true })
+                res.cookie("access_Token",accessToken, {
+                    httpOnly: true,
+                    secure: true,
+                    sameSite:"none",
+                 })
 
-                res.cookie("refresh_Token",refreshToken,{ httpOnly:true })
+                res.cookie("refresh_Token",refreshToken,{ 
+                    httpOnly: true,
+                    secure: true,
+                    sameSite:"none",
+                 })
 
                 return res.status(200).json({success:true,data:exist,message:"user google logined"})
             }
