@@ -26,8 +26,8 @@ export const createCheckOutSessionController = (dependencies:IDepencencies) => {
             payment_method_types: ['card'],
             line_items,
             mode: 'payment',
-            success_url: `http://localhost:5173/courses/paymentSuccess?session_id={CHECKOUT_SESSION_ID}&amount=${amount}&currency=INR&courseId=${courseId}&userId=${userId}`,
-            cancel_url: `http://localhost:5173/courses/paymentFailure`,
+            success_url: `https://publitech-client.vercel.app/courses/paymentSuccess?session_id={CHECKOUT_SESSION_ID}&amount=${amount}&currency=INR&courseId=${courseId}&userId=${userId}`,
+            cancel_url: `https://publitech-client.vercel.app/courses/paymentFailure`,
             metadata: {
                 courseId,
                 userId,

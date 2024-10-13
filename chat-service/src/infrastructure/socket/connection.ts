@@ -12,7 +12,6 @@ interface LiveStream {
 const activeLiveStreams = new Map<string, LiveStream>(); // Global declaration
 
 const socket = require('socket.io');
-
 console.log(process.env.CLIENT_URL, "env");
 
 const connectSocketIo = (server: Server) => {

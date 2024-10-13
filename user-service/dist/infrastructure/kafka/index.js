@@ -6,5 +6,10 @@ exports.kafka = new kafkajs_1.Kafka({
     clientId: "user-service",
     brokers: ["localhost:29092"]
 });
+// production
+// const kafka = new Kafka({
+//     clientId: "user-service",
+//     brokers: ["kafka:9092"]  
+// });
 exports.producer = exports.kafka.producer();
 exports.consumer = exports.kafka.consumer({ groupId: "user-service kafka group" });

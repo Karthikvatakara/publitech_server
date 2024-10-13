@@ -18,12 +18,14 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cookie_parser_1.default)());
 const allowedOrigins = "http://localhost:5173";
+// const allowedOrigins = "https://publitech-client.vercel.app";
 const corsOptions = {
     origin: allowedOrigins,
     methods: ["GET,HEAD,PUT,POST,DELETE"],
     credentials: true
 };
 app.use((0, cors_1.default)(corsOptions));
+// app.use("/api/user",routes(dependecies));
 app.use("/", (0, routes_1.routes)(dependencies_1.dependecies));
 app.use("*", (req, res) => {
     res.status(404).json({ success: false, status: 404, message: "api not found" });

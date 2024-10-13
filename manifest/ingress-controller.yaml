@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-origin: "https://publitech-client.vercel.app"
     nginx.ingress.kubernetes.io/enable-access-log: "true" 
+    nginx.ingress.kubernetes.io/websocket-services: "publitech-chat-service"
 spec:
   ingressClassName: webapprouting.kubernetes.azure.com
   rules:

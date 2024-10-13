@@ -11,6 +11,6 @@
 //         if(!rejectInstructor){
 //             throw new Error("error in user rejected")
 //         }
-//     }catch(error:any){
+//     }catch(error){
 //     }
 // }

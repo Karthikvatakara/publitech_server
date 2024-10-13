@@ -9,5 +9,5 @@ data:
   PORT: "3006"
   ACCESS_TOKEN_SECRET: "asdfghjklzxcvbnmasdfghjkasdfgh"
   REFRESH_TOKEN_SECRET: "asdfghjkliuytrertyuioiugfghjkgfhgf"
-  CLIENT_URL: "http://localhost:5173"
+  CLIENT_URL: "https://publitech-client.vercel.app"
   NODE_ENV: "production"

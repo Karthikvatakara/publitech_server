@@ -20,6 +20,7 @@ export const signupController = (dependencies: IDependencies) => {
     // To check whether the user email is taken or not
     if (!userCredentials.otp) {
       try {
+        console.log(userCredentials,"pppppppppppppppp");
         const userExist = await findByEmailUseCase(dependencies).execute(email);
         if (userExist) {
           return next(
