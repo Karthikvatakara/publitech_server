@@ -8,8 +8,10 @@ export const getTotalPaymentsForInstructorController = ( dependencies: IDepencen
     return async(req: Request, res: Response, next: NextFunction) => {
         try{
             const instructorId = req?.user?._id;
+            console.log("🚀 ~ returnasync ~ instructorId:i n the controller ", instructorId)
 
             const getTotalPayments = await getTotalPaymentsForInstructorUseCase(dependencies).execute(instructorId!);
+            console.log("🚀 ~ returnasync ~ getTotalPayments:", getTotalPayments)
 
             // if(!getTotalPayments) {
             //     throw ErrorResponse.notFound("instructor Payment not found")

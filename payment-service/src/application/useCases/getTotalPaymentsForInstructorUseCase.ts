@@ -5,6 +5,7 @@ export const getTotalPaymentsForInstructorUseCase = ( dependencies: IDepencencie
 
     return{
         execute: async(instructorId: string ) => {
+            console.log("🚀 ~ execute:async ~ instructorId: in the usecase", instructorId)
             try{
                 return await getTotalPaymentsForInstructor(instructorId);
             }catch(error){  

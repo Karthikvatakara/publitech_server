@@ -3,11 +3,13 @@ import { Payment } from "../models/payment";
 import { subscriptionPayment } from "../models/subscriptionPayment";
 
 export const getTotalPaymentsForInstructor = async( instructorId: string ) => {
+    console.log("🚀 ~ getTotalPaymentsForInstructor ~ instructorId: in the repository", instructorId)
     try{
         const totalPaymentsOfCourses = await Payment.aggregate([
             {$match: {instructorRef: instructorId, status: "completed" }},
             {$group: { _id: null, totalAmount: { $sum: "$amount"}}}
         ]);
+        console.log("🚀 ~ getTotalPaymentsForInstructor ~ totalPaymentsOfCourses:", totalPaymentsOfCourses)
 
         const coursePayment = totalPaymentsOfCourses[0]?.totalAmount || 0;
 
