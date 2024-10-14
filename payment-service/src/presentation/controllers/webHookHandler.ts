@@ -6,14 +6,14 @@ import createChatProducer from "../../infrastructure/kafka/producer/createChatPr
 import updateChatSubscription from "../../infrastructure/kafka/producer/updateChatSubscription";
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 export const stripeWebhookHandler = (dependencies: IDepencencies) => {
     return async (req: Request, res: Response, next: NextFunction) => {
-
+        
         console.log('Raw body:', req.body);
         console.log('Headers:', req.headers);
-        
+        const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
         const sig = req.headers['stripe-signature'];
 
         let event;

@@ -12,9 +12,9 @@ export const noOfCompletedEnrollmentsController = ( dependencies: IDependencies 
 
             const completedCourses = await noOfCompletedEnrollmentsUseCase(dependencies).execute(userId!);
 
-            if(!completedCourses) {
-                throw ErrorResponse.notFound("no courses completed")
-            }
+            // if(!completedCourses) {
+            //     throw ErrorResponse.notFound("no courses completed")
+            // }
 
             res.status(200).json({ success: true, data: completedCourses, message: " no of completed courses fetched succesfully"})
         }catch(error){
