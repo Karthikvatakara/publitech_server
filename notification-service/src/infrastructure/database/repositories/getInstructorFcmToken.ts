@@ -6,7 +6,7 @@ export const getInstructorFcmToken = async( userId: string )=> {
         console.log("🚀 ~ getInstructorFcmToken ~ instructor:", instructor)
 
         if(!instructor || !instructor.fcmTokens ) {
-            return []
+            return null;
         }
         
         return instructor?.fcmTokens;

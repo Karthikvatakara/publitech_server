@@ -1,8 +1,5 @@
 import { getInstructorFcmToken } from "../database/repositories/getInstructorFcmToken";
 import { firebase } from "../../utils/adminFirebase";
-import { removeInvalidTokens } from "../database/repositories/removeInvalidToken";
-import { MulticastMessage } from "firebase-admin/messaging";
-
 
 export const notifyInstructor = async (title: string, body: string, iconUrl: string, userId: string): Promise<any> => {
     console.log(`🚀 ~ notifyInstructor ~ userId: ${userId}`);
@@ -11,41 +8,33 @@ export const notifyInstructor = async (title: string, body: string, iconUrl: str
     console.log(`🚀 ~ notifyInstructor ~ title: ${title}`);
 
     try {
-        const instructorFcmTokens: string[] = await getInstructorFcmToken(userId);
+        const instructorFcmToken: null | string = await getInstructorFcmToken(userId);
 
-        if (instructorFcmTokens.length === 0) {
+        if (!instructorFcmToken) {
             console.log('No FCM tokens found for the instructor');
             return;
         }
-      
-        const message: MulticastMessage = {
-            tokens: instructorFcmTokens,
+
+
+        const message = {
+            token: instructorFcmToken,
             notification: {
                 title,
                 body,
-                imageUrl: iconUrl,
+                image: iconUrl, 
             },
         };
 
         console.log("🚀 ~ notifyInstructor ~ message:", message);
 
-        const response = await firebase.messaging().sendEachForMulticast(message);
-
-        console.log(`${response.successCount} messages were sent successfully`);
-        console.log(`${response.failureCount} messages failed to send`);
-
-        if (response.failureCount > 0) {
-            const failedTokens = response.responses
-                .map((resp, idx) => resp.success ? null : instructorFcmTokens[idx])
-                .filter((token): token is string => token !== null);
-
-            console.log('List of tokens that caused failures:', failedTokens);
-
-         
-            await removeInvalidTokens(userId, failedTokens);
+        try {
+            const response = await firebase.messaging().send(message);
+            console.log(`Notification sent successfully to token: ${instructorFcmToken}`);
+            return { success: true, token: instructorFcmToken, response };
+        } catch (error) {
+            console.error(`Failed to send notification to token: ${instructorFcmToken}`, error);
+            return { success: false, token: instructorFcmToken, error };
         }
-
-        return response;
     } catch (error) {
         console.error('Error in notifyInstructor:', error);
         if (error instanceof Error) {

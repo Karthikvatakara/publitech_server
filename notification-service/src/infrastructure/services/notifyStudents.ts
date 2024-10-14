@@ -3,20 +3,13 @@ import { firebase } from "../../utils/adminFirebase";
 
 export const notifyStudents = async (title: string, body: string, iconUrl: string) => {
   try {
-    console.log("🚀 ~ notifyStudents ~ iconUrl:", iconUrl)
+
     const studentTokens = await getStudentsTokens();
-    console.log("🚀 ~ notifyStudents ~ studentTokens:", studentTokens);
 
-    // Filter out undefined values and ensure valid tokens
-    const validTokens: string[] = studentTokens
-      .flat() // Flattens nested arrays, if anya
-      .filter((token): token is string => token !== undefined);
+    const validTokens : string[] = studentTokens.filter((token): token is string => token!=null)
 
-    console.log("🚀 ~ notifyStudents ~ validTokens:", validTokens)
-
-    // Send notifications to each token individually
-    const sendPromises = validTokens.map(async (token) => {
-      const message = {
+    const sendPromises = validTokens.map(async(token) => {
+         const message = {
         token: token,
         notification: {
           title,
@@ -24,8 +17,6 @@ export const notifyStudents = async (title: string, body: string, iconUrl: strin
           image: iconUrl,
         },
       };
-
-      console.log("🚀 ~ notifyStudents ~ message:", message);
 
       try {
         const response = await firebase.messaging().send(message);
@@ -35,7 +26,7 @@ export const notifyStudents = async (title: string, body: string, iconUrl: strin
         console.error(`Failed to send notification to token: ${token}`, error);
         return { success: false, token, error };
       }
-    });
+    })
 
     const results = await Promise.all(sendPromises);
 
@@ -59,3 +50,4 @@ export const notifyStudents = async (title: string, body: string, iconUrl: strin
     throw error;
   }
 };
+   

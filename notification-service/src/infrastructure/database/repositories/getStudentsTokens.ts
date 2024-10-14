@@ -1,11 +1,10 @@
-import { UserEntity } from "../../../domain/entities";
-import { User } from "../models"
+import { User } from "../models";
 
-export const getStudentsTokens = async() => {
-
-    const students = await User.find({ role: "student"});
-
-    const studentfcmtokens = students.map(student => student.fcmTokens)
-    console.log("🚀 ~ getStudentsTokens ~ studentfcmtokens:", studentfcmtokens);
-    return studentfcmtokens;
-} 
+export const getStudentsTokens = async (): Promise<(string | null)[]> => {
+    try {
+        const students = await User.find({ role: 'student' });
+        return students.map(student => student.fcmTokens || null);
+    } catch (error) {
+        throw new Error((error as Error)?.message);
+    }
+}

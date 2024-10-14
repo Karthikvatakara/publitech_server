@@ -6,20 +6,17 @@ export const saveFcmToken = async( token: string, userId: string ): Promise<User
         const user = await User.findById(userId);
         console.log("🚀 ~ saveFcmToken ~ user:", user)
 
-        if(!user){
-            throw new Error("user not found")
+        if (!user) {
+            throw new Error("User not found")
         }
 
-        user.fcmTokens = user.fcmTokens?.filter(existingToken => existingToken !== token) || [];
-
-
-        // if(!user.fcmTokens?.includes(token)){
-        //     user.fcmTokens?.push(token);
-        //     await user.save();
-        // }
-        user.fcmTokens.push(token);
-        await user.save();
-
+        if (user?.fcmTokens !== token) {
+            user.fcmTokens = token;
+            await user.save();
+            console.log("FCM token updated for user:", userId);
+        } else {
+            console.log("FCM token unchanged for user:", userId);
+        }
 
         return user;
     }catch(error){
