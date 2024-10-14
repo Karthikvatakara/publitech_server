@@ -6,11 +6,11 @@ export const getExamResultByExamIdController = ( dependencies: IDependencies ) =
 
     return async( req: Request, res: Response, next: NextFunction ) => {
         try{
-            const { assessmentRef } = req.params;
+            const { assessmentRef, userId } = req.params;
             console.log("🚀 ~ returnasync ~ assessmentRef:", assessmentRef)
 
             
-            const examresult = await getExamResultByExamIdUseCase(dependencies).execute(assessmentRef);
+            const examresult = await getExamResultByExamIdUseCase(dependencies).execute(assessmentRef,userId);
 
             if(!examresult){
                 throw new Error("result not found")

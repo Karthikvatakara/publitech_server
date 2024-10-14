@@ -1,10 +1,10 @@
 import { resultEntity } from "../../../../domain/entities/resultEntity";
 import { Result } from "../models/result";
 
-export const getExamResultByExamId = async( assessmentRef: string ) :Promise < resultEntity | null >=> {
+export const getExamResultByExamId = async( assessmentRef: string, userId: string ) :Promise < resultEntity | null >=> {
     try{
         console.log("??????::::::::::::::",assessmentRef)
-        const result = await Result.findOne({ assessmentRef });
+        const result = await Result.findOne({ assessmentRef,userRef: userId });
         console.log("🚀 ~ getExamResultByExamId ~ result:", result)
 
         return result

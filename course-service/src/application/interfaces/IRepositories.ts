@@ -37,7 +37,7 @@ export interface IRespositories {
     updateExam:( examId: string, data: assessmentEntity ) => Promise<assessmentEntity | null>
     createExamResult :( data: resultEntity ) => Promise<resultEntity | null>
     fetchExamResultById:(resultId: string) => Promise<resultEntity | null>
-    getExamResultByExamId:( assessmentRef: string ) =>  Promise<resultEntity |null>
+    getExamResultByExamId:( assessmentRef: string, userId: string ) =>  Promise<resultEntity |null>
     getResultsByUserId:( userId: string ) => Promise<resultEntity[] | null>
     checkResultOfAssessmentAndUserId: ( assessmentRef: string, userRef: string ) => Promise<resultEntity | null>
     updateResult: ( resultId: string, data: resultEntity) => Promise<resultEntity | null>

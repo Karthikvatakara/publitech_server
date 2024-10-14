@@ -110,7 +110,7 @@ export const courseRoutes = (dependencies:IDependencies) => {
     router.route("/examresult/:resultId")
         .get(jwtMiddleware,fetchExamResult)
 
-    router.route("/isResultExist/:assessmentRef")
+    router.route("/isResultExist/:assessmentRef/:userId")
         .get(getExamResultByExamId)
 
     router.route("/generate-certificate/:assessmentRef")
