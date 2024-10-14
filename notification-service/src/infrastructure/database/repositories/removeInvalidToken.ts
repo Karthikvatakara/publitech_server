@@ -1,12 +1,13 @@
 import { User } from "../models";
 
-export const removeInvalidToken = async( userId: string, invalidToken: string )=> {
-    try{
+export const removeInvalidTokens = async (userId: string, invalidTokens: string[]): Promise<void> => {
+    try {
         await User.findByIdAndUpdate(userId, {
-            $pull: { fcmTokens: invalidToken }
+            $pull: { fcmTokens: { $in: invalidTokens } }
         });
-        console.log(`Removed invalid token ${invalidToken} for user ${userId}`);
-    }catch(error){
+        console.log(`Removed ${invalidTokens.length} invalid tokens for user ${userId}`);
+    } catch (error) {
+        console.error('Error removing invalid tokens:', error);
         throw new Error((error as Error)?.message);
     }
 }
