@@ -7,7 +7,8 @@ export const createCourse = async( data: CourseEntity ) : Promise<CourseEntity |
             data._id, 
             { $set: data }, 
             { new: true, upsert: true, runValidators: true }
-        )
+        );
+
         console.log("🚀 ~ createCourse ~ createdCourse:", createdCourse)
 
         if(!createdCourse){
