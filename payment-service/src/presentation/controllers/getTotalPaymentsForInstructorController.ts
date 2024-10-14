@@ -11,9 +11,9 @@ export const getTotalPaymentsForInstructorController = ( dependencies: IDepencen
 
             const getTotalPayments = await getTotalPaymentsForInstructorUseCase(dependencies).execute(instructorId!);
 
-            if(!getTotalPayments) {
-                throw ErrorResponse.notFound("instructor Payment not found")
-            };
+            // if(!getTotalPayments) {
+            //     throw ErrorResponse.notFound("instructor Payment not found")
+            // };
             return res.status(200).json({ success: true, data: getTotalPayments, message: "payment fetched succesfully"})
         }catch(error){
             next(error)

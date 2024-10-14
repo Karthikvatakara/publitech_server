@@ -23,10 +23,12 @@ export const getTotalPaymentsForInstructor = async( instructorId: string ) => {
         {$match: { chatId: {$in: chatIds}, status: 'completed'}},
         {$group: {_id: null, totalAmount:{$sum:"$amount"}}}
        ])
+       console.log("🚀 ~ getTotalPaymentsForInstructor ~ subscriptionAmount:", subscriptionAmount)
 
        const totalSubscriptionAmount = subscriptionAmount[0]?.totalAmount || 0;
 
        const totalAmount = coursePayment+totalSubscriptionAmount;
+       console.log("🚀 ~ getTotalPaymentsForInstructor ~ totalAmount:", totalAmount)
 
        return totalAmount;
     }catch(error) {
