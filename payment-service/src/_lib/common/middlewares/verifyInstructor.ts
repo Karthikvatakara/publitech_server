@@ -11,13 +11,15 @@ export const verifyInstructor = async(req:Request,res:Response,next:NextFunction
     
     const user = await User.findById((req.user._id));
     console.log("🚀 ~ verifyInstructor ~ user:dddddddddddddddddddddd", user)
-    
+
     if(!user){
         return ErrorResponse.unAuthorized("user not exist");
     }
-
+    if(user.isBlocked ){
+        return ErrorResponse.unAuthorized("you are blocked");
+    }
     if(user.role !== "instructor"){
-        return ErrorResponse.unAuthorized("user is not instructor")
+        return ErrorResponse.unAuthorized("user is not instructor");
     }
     next();
 }
