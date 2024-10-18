@@ -14,7 +14,7 @@ const models_1 = require("../models");
 const createChat = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newChat = yield models_1.chat.create(data);
-        // console.log("🚀 ~ createChat ~ newChat:", newChat)
+        // console.log("🚀 ~ createChat ~ newChat:", newffChat)
         const populatedChat = yield models_1.chat.findById(newChat._id)
             .populate("users", "-password")
             .populate("groupAdmin", "-password");

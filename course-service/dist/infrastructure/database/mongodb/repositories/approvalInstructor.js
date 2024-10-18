@@ -27,7 +27,7 @@ const approvalInstructor = (userData) => __awaiter(void 0, void 0, void 0, funct
     try {
         const { _id } = userData, restData = __rest(userData, ["_id"]);
         if (!userData || !_id) {
-            throw new Error("no userdata is got from kafka");
+            throw new Error("no userdata is gotf from kafka");
         }
         const user = yield models_1.User.findByIdAndUpdate(_id, {
             $set: restData

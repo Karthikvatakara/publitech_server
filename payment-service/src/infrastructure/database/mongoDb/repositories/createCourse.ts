@@ -9,7 +9,7 @@ export const createCourse = async( data: CourseEntity ) : Promise<CourseEntity |
             { new: true, upsert: true, runValidators: true }
         );
 
-        console.log("🚀 ~ createCourse ~ createdCourse:", createdCourse)
+        console.log("🚀 ~ createCourse ~ creatfedCourse:", createdCourse)
 
         if(!createdCourse){
             throw new Error("course not created");

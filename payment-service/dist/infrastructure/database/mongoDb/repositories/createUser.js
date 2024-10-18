@@ -15,7 +15,7 @@ const createUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newUser = yield User_1.User.create(data);
         if (!newUser) {
-            throw new Error("user is not created");
+            throw new Error("user is not creafted");
         }
         return newUser;
     }

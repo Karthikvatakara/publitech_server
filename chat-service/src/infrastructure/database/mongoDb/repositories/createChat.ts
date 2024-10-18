@@ -5,7 +5,7 @@ import { chat } from "../models";
 export const createChat = async( data: chatEntity ): Promise< chatEntity | null> => {
     try{
         const newChat = await chat.create(data)
-        // console.log("🚀 ~ createChat ~ newChat:", newChat)
+        // console.log("🚀 ~ createChat ~ newChat:", newffChat)
 
         const populatedChat = await chat.findById(newChat._id)
         .populate("users","-password")

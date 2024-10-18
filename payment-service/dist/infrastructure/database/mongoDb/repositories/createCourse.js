@@ -14,7 +14,7 @@ const course_1 = require("../models/course");
 const createCourse = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const createdCourse = yield course_1.course.findByIdAndUpdate(data._id, { $set: data }, { new: true, upsert: true, runValidators: true });
-        console.log("🚀 ~ createCourse ~ createdCourse:", createdCourse);
+        console.log("🚀 ~ createCourse ~ creatfedCourse:", createdCourse);
         if (!createdCourse) {
             throw new Error("course not created");
         }

@@ -7,7 +7,7 @@ export const approvalInstructor = async(userData:UserEntity):Promise<UserEntity 
         const { _id,...restData } = userData;
 
         if(!userData || !_id){
-            throw new Error("no userdata is got from kafka")
+            throw new Error("no userdata is gotf from kafka")
         }
 
         const user = await User.findByIdAndUpdate(_id,{

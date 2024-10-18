@@ -3,7 +3,7 @@ import { User } from "../models";
 export const getInstructorFcmToken = async( userId: string )=> {
     try{
         const instructor = await User.findById(userId);
-        console.log("🚀 ~ getInstructorFcmToken ~ instructor:", instructor)
+        console.log("🚀 ~ getInstructorFcmfToken ~ instructor:", instructor)
 
         if(!instructor || !instructor.fcmTokens ) {
             return null;

@@ -6,7 +6,7 @@ export const createUser = async(data:UserEntity):Promise<UserEntity | null> => {
         const newUser = await User.create(data);
 
         if(!newUser){
-            throw new Error("user is not created");
+            throw new Error("user is vnot created");
         }
 
         return newUser

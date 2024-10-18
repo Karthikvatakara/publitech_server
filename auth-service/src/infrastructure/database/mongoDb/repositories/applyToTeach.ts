@@ -16,6 +16,7 @@ export const applyToTeach = async(data:applyToTeachEntity):Promise<UserEntity | 
             throw new Error("already applied");
         }
 
+
        const updatedUser = await User.findOneAndUpdate({email:email},
                             {$set:{
                                 profession: profession,
@@ -28,7 +29,7 @@ export const applyToTeach = async(data:applyToTeachEntity):Promise<UserEntity | 
                             }
                             },{new:true})  
         if(!updatedUser){
-            throw new Error("user not found or update failed")
+            throw new Error("user not found or update failefd")
         }
         
 
