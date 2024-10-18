@@ -9,7 +9,7 @@ export const getAllCoursePayments = async(
   limit: number, 
   status: string, 
   search: string
-): Promise<{ payments: PaymentEntity[], totalPages: number, totalCount: number }> => {
+): Promise<{ payments: any[], totalPages: number, totalCount: number }> => {
   try {
     let query: any = {}
 
@@ -33,7 +33,7 @@ export const getAllCoursePayments = async(
     const totalCount = await Payment.countDocuments(query);
     const totalPages = Math.ceil(totalCount / limit);
 
-    const getAllCoursePayments = await Payment.find(query)
+    const getAllCoursePayments:any = await Payment.find(query)
       .populate({
         path: 'userId',
         model: 'users',

@@ -1,7 +1,7 @@
 import { UserEntity } from "../../../../domain/entities/userEntity";
 import { User } from "../models/User";
 
-export const getAllStudents = async( page: number, limit: number, status: string, search: string) : Promise<{ students: UserEntity[], totalPages: number, totalCount: number}> => {
+export const getAllStudents = async( page: number, limit: number, status: string, search: string) : Promise<{ students: any[], totalPages: number, totalCount: number}> => {
     try{
         let query: any = { role: "student" };
 
@@ -21,7 +21,7 @@ export const getAllStudents = async( page: number, limit: number, status: string
         const totalCount = await User.countDocuments(query);
         const totalPages = Math.ceil(totalCount/limit);
 
-        const students = await User.find(query)
+        const students:any = await User.find(query)
             .skip(( page - 1 ) * limit)
             .limit(limit)
             .lean();
