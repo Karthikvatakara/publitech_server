@@ -3,7 +3,7 @@ import { course } from "../models/course";
 import { Payment } from "../models/payment";
 import { User } from "../models/User";
 
-export const getUserCoursePayments = async (page: number, limit: number, status: string, search: string, userId: string): Promise<{ payments: PaymentEntity[], totalPages: number, totalCount: number }> => {
+export const getUserCoursePayments = async (page: number, limit: number, status: string, search: string, userId: string): Promise<{ payments: any[], totalPages: number, totalCount: number }> => {
   try {
     let query: any = {};
 
@@ -33,7 +33,7 @@ export const getUserCoursePayments = async (page: number, limit: number, status:
     const totalCount = await Payment.countDocuments(query);
     const totalPages = Math.ceil(totalCount / limit);
 
-    const getAllCoursePayments = await Payment.find(query)
+    const getAllCoursePayments:any = await Payment.find(query)
       .populate({
         path: 'courseId',
         model: 'courses',
