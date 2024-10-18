@@ -16,7 +16,7 @@ const dependencies_1 = require("../_boot/dependencies");
 const app = (0, express_1.default)();
 const PORT = Number(process.env.PORT) || 4005;
 app.use((req, res, next) => {
-    if (req.originalUrl === '/webhook') {
+    if (req.originalUrl === '/api/payment/webhook') {
         next();
     }
     else {

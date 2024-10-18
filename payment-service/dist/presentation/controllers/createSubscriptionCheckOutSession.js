@@ -34,8 +34,8 @@ const createSubscriptionCheckoutSessionController = (dependencies) => {
                 payment_method_types: ['card'],
                 line_items,
                 mode: 'payment',
-                success_url: `http://localhost:5173/subscription?session_id={CHECKOUT_SESSION_ID}&amount=${amount}&currency=INR&chatId=${chatId}&userId=${userId}`,
-                cancel_url: `http://localhost:5173/subscription/failure`,
+                success_url: `https://publitech-client.vercel.app/subscription?session_id={CHECKOUT_SESSION_ID}&amount=${amount}&currency=INR&chatId=${chatId}&userId=${userId}`,
+                cancel_url: `https://publitech-client.vercel.app/subscription/failure`,
                 metadata: {
                     chatId,
                     userId,
