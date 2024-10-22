@@ -69,7 +69,7 @@ const courseRoutes = (dependencies) => {
         .post(jwtMiddleware_1.jwtMiddleware, createExamResult);
     router.route("/examresult/:resultId")
         .get(jwtMiddleware_1.jwtMiddleware, fetchExamResult);
-    router.route("/isResultExist/:assessmentRef")
+    router.route("/isResultExist/:assessmentRef/:userId")
         .get(getExamResultByExamId);
     router.route("/generate-certificate/:assessmentRef")
         .post(jwtMiddleware_1.jwtMiddleware, certificateGenerator);

@@ -15,11 +15,13 @@ const payment_1 = require("../models/payment");
 const subscriptionPayment_1 = require("../models/subscriptionPayment");
 const getTotalPaymentsForInstructor = (instructorId) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
+    console.log("🚀 ~ getTotalPaymentsForInstructor ~ instructorId: in the repository", instructorId);
     try {
         const totalPaymentsOfCourses = yield payment_1.Payment.aggregate([
             { $match: { instructorRef: instructorId, status: "completed" } },
             { $group: { _id: null, totalAmount: { $sum: "$amount" } } }
         ]);
+        console.log("🚀 ~ getTotalPaymentsForInstructor ~ totalPaymentsOfCourses:", totalPaymentsOfCourses);
         const coursePayment = ((_a = totalPaymentsOfCourses[0]) === null || _a === void 0 ? void 0 : _a.totalAmount) || 0;
         const chatWithInstructor = yield chat_1.chat.find({ users: instructorId }).select("_id");
         const chatIds = chatWithInstructor.map((chat) => chat._id);
@@ -30,8 +32,10 @@ const getTotalPaymentsForInstructor = (instructorId) => __awaiter(void 0, void 0
             { $match: { chatId: { $in: chatIds }, status: 'completed' } },
             { $group: { _id: null, totalAmount: { $sum: "$amount" } } }
         ]);
+        console.log("🚀 ~ getTotalPaymentsForInstructor ~ subscriptionAmount:", subscriptionAmount);
         const totalSubscriptionAmount = ((_b = subscriptionAmount[0]) === null || _b === void 0 ? void 0 : _b.totalAmount) || 0;
         const totalAmount = coursePayment + totalSubscriptionAmount;
+        console.log("🚀 ~ getTotalPaymentsForInstructor ~ totalAmount:", totalAmount);
         return totalAmount;
     }
     catch (error) {

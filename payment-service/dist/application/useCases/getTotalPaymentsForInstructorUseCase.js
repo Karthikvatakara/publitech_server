@@ -14,6 +14,7 @@ const getTotalPaymentsForInstructorUseCase = (dependencies) => {
     const { repositories: { getTotalPaymentsForInstructor } } = dependencies;
     return {
         execute: (instructorId) => __awaiter(void 0, void 0, void 0, function* () {
+            console.log("🚀 ~ execute:async ~ instructorId: in the usecase", instructorId);
             try {
                 return yield getTotalPaymentsForInstructor(instructorId);
             }

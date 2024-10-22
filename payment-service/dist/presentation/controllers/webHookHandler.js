@@ -17,9 +17,11 @@ const paymentSuccessProducer_1 = __importDefault(require("../../infrastructure/k
 const createChatProducer_1 = __importDefault(require("../../infrastructure/kafka/producer/createChatProducer"));
 const updateChatSubscription_1 = __importDefault(require("../../infrastructure/kafka/producer/updateChatSubscription"));
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const stripeWebhookHandler = (dependencies) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log('Raw body:', req.body);
+        console.log('Headers:', req.headers);
+        const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
         const sig = req.headers['stripe-signature'];
         let event;
         try {

@@ -14,9 +14,9 @@ const getExamResultByExamIdController = (dependencies) => {
     const { useCases: { getExamResultByExamIdUseCase } } = dependencies;
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const { assessmentRef } = req.params;
+            const { assessmentRef, userId } = req.params;
             console.log("🚀 ~ returnasync ~ assessmentRef:", assessmentRef);
-            const examresult = yield getExamResultByExamIdUseCase(dependencies).execute(assessmentRef);
+            const examresult = yield getExamResultByExamIdUseCase(dependencies).execute(assessmentRef, userId);
             if (!examresult) {
                 throw new Error("result not found");
             }

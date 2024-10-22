@@ -11,10 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getExamResultByExamId = void 0;
 const result_1 = require("../models/result");
-const getExamResultByExamId = (assessmentRef) => __awaiter(void 0, void 0, void 0, function* () {
+const getExamResultByExamId = (assessmentRef, userId) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log("??????::::::::::::::", assessmentRef);
-        const result = yield result_1.Result.findOne({ assessmentRef });
+        const result = yield result_1.Result.findOne({ assessmentRef, userRef: userId });
         console.log("🚀 ~ getExamResultByExamId ~ result:", result);
         return result;
     }

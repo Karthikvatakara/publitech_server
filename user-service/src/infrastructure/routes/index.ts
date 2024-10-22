@@ -36,7 +36,7 @@ export const routes = (dependencies: IDependencies) => {
 
   router
     .route("/admin/students/status/:userId")
-    .post(jwtMiddleware,verifyAdmin,toggleStudentBlockStatus)
+    .post(toggleStudentBlockStatus)
 
   router
     .route("/admin/instructor/status")

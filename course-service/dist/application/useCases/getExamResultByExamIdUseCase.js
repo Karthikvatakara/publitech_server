@@ -13,9 +13,9 @@ exports.getExamResultByExamIdUseCase = void 0;
 const getExamResultByExamIdUseCase = (dependencies) => {
     const { repositories: { getExamResultByExamId } } = dependencies;
     return {
-        execute: (assessmentRef) => __awaiter(void 0, void 0, void 0, function* () {
+        execute: (assessmentRef, userId) => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                return yield getExamResultByExamId(assessmentRef);
+                return yield getExamResultByExamId(assessmentRef, userId);
             }
             catch (error) {
                 throw new Error(error === null || error === void 0 ? void 0 : error.message);
