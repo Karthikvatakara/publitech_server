@@ -9,6 +9,7 @@ export const notifyInstructor = async (title: string, body: string, iconUrl: str
 
     try {
         const instructorFcmToken: null | string = await getInstructorFcmToken(userId);
+        console.log("🚀 ~ notifyInstructor ~ instructorFcmToken:", instructorFcmToken)
 
         if (!instructorFcmToken) {
             console.log('No FCM tokens found for the instructor');

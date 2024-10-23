@@ -9,6 +9,7 @@ export const courseStatusUpdation = async (data: CourseEntity) => {
             console.log("accepted");
             await notifyStudents("New course added", data?.title,icon);
         } else if (data.stage === 'rejected') {
+            console.log("in the rejected stage in th courseupdation status")
             await notifyInstructor(" Your course rejected ",data?.title,icon,(data?.instructorRef).toString())
         }
      

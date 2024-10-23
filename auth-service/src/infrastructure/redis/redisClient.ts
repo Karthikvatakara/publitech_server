@@ -35,7 +35,7 @@ import { Redis } from "ioredis";
 
 // Set the Redis URL provided by Render.
 const redisURL = "rediss://red-crvq453tq21c738oo8a0:uO3jzb04GmfdJljxDNyOIxdfshfNNAn0@oregon-redis.render.com:6379";
-// const redisURL = process.env.REDIS_URL || "redis://red-crvq453tq21c738oo8a0:6379";
+
 
 // Create a Redis client using the URL.
 export const Client = new Redis(redisURL);
